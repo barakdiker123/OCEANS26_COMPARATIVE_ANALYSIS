@@ -518,6 +518,132 @@ where the measuremenet model of the IKF is
 
 
 \subsection{Unscented Kalman filter}
+Consider the initialized state vector $\mathbf{x}_0$ with a known mean and covariance:
+%
+\begin{align}
+\hat{\mathbf{x}}_0 &= \mathbb{E}[{x}_0], \\
+\mathbf{P}_0 &= \mathbb{E}\!\left[({x}_0 - \hat{\mathbf{x}}_0)
+({x}_0 - \hat{\mathbf{x}}_0)^\mathsf{T}\right].
+\end{align}
+%
+\noindent The weights for computing the mean (m upper case) and covariance (c upper case) are defined as:
+\begin{align}
+w_0^{(m)} &= \frac{\lambda}{n + \lambda}, \\
+w_0^{(c)} &= \frac{\lambda}{n + \lambda} + (1 + \alpha^2 + \beta), \\
+w_i^{(m)} &= w_i^{(c)} = \frac{1}{2(n + \lambda)}, \quad i = 1, \ldots, 2n,
+\end{align}
+where $n$ is the dimension of the state vector and
+$\lambda = \alpha^2 (n + \kappa) - n$.
+The parameters $\alpha$, $\beta$, and $\kappa$ control the spread and weighting of the sigma points and are addressed as hyperparameters. Typically, $\alpha = 10^{-3}$, $\kappa = 0$, and $\beta = 2$ for
+Gaussian distributions~\cite{nielsen2021ukf}.
+%
+\subsubsection{Sigma Points}
+%
+\noindent The sigma points are constructed as
+\begin{align}
+\boldsymbol{\chi}_{0,k} &= \hat{\mathbf{x}}_{k}, \quad i=0 \\
+\boldsymbol{\chi}_{i,k} &= \hat{\mathbf{x}}_{k}
++ \left[\sqrt{(n+\lambda)\mathbf{P}_{k}}\right]_i,
+\quad i = 1, \ldots, n, \\
+\boldsymbol{\chi}_{i,k} &= \hat{\mathbf{x}}_{k}
+- \left[\sqrt{(n+\lambda)\mathbf{P}_{k}}\right]_{i-n},
+\quad i = n+1, \ldots, 2n,
+\end{align}
+\noindent where $\sqrt{\mathbf{P}_{k}}$ denotes the Cholesky decomposition of the covariance matrix.
+%\subsubsection{Prediction step}
+\noindent Each sigma point is propagated through the nonlinear model:
+\begin{equation}
+\boldsymbol{\chi}_{i,k+1|k} = f(\boldsymbol{\chi}_{i,k}), \quad i = 0, \ldots, 2n.
+\end{equation}
+
+\noindent The predicted state mean and covariance are then computed as
+\begin{equation}
+\hat{\mathbf{x}}_{k+1|k}^{-} =
+\sum_{i=0}^{2n} w_i^{(m)} \boldsymbol{\chi}_{i,k+1|k}    
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\mathbf{P}_{k+1|k}^{-} &=
+\sum_{i=0}^{2n} w_i^{(c)}
+(\boldsymbol{\chi}_{i,k+1|k} - \hat{\mathbf{x}}_{k+1|k})
+(\boldsymbol{\chi}_{i,k+1|k} - \hat{\mathbf{x}}_{k+1|k})^\mathsf{T} \\
+&\quad + \mathbf{Q}_{k+1}.
+\end{aligned}
+\end{equation}
+
+\noindent where $\mathbf{Q}_{k+1}$ is the covariance process noise matrix in time stamp k+1.
+%
+\subsubsection{Update step}
+%
+\noindent A new set of sigma points is generated from the predicted mean and covariance and propagated through the measurement function:
+\begin{align}
+\mathbf{\mathcal{Z}}_{i,k+1|k} &= h(\boldsymbol{\chi}_{i,k+1|k}), \quad i = 0, \ldots, 2n.
+\end{align}
+\noindent And the measurement model of the DVL is:
+\begin{align}
+\mathbf{\mathcal{Z}}_{i,k+1|k}
+&=
+h\left(\mathbf{\chi}_{i,k+1|k}\right)
+=
+\mathbf{C}_b^n
+\left(
+\mathbf{I}-\boldsymbol{\phi}^{n\wedge}
+\right)
+\left[
+\mathbf{v}^n+\delta\hat{\mathbf{v}}_n^i
+\right]
+-
+\mathbf{C}_b^n\mathbf{v}^n,
+\qquad i=0,\ldots,2n
+\end{align}
+
+\noindent The predicted measurement mean and covariance are computed as:
+
+\begin{equation}
+\hat{\mathbf{z}}_{k+1|k} =
+\sum_{i=0}^{2n} w_i^{(m)} \mathbf{\mathcal{Z}}_{i,k+1|k}
+\end{equation}
+
+\begin{align}
+\mathbf{S}_{k+1}
+&=
+\sum_{i=0}^{2n} w_i^{(c)}
+\bigl(
+\mathbf{\mathcal{Z}}_{i,k+1|k} - \hat{\mathbf{z}}_{k+1|k}
+\bigr)
+\bigl(
+\mathbf{\mathcal{Z}}_{i,k+1|k} - \hat{\mathbf{z}}_{k+1|k}
+\bigr)^{\mathsf{T}}
+\nonumber\\
+&\quad + \mathbf{R}_{k+1}.
+\label{innovation}
+\end{align}
+
+\noindent where $\mathbf{R}_{k+1}$ is the covariance measurement matrix noise in time stamp k+1.
+
+\noindent The cross-covariance matrix is define by:
+\begin{equation}
+\mathbf{P}_{xz,k+1} =
+\sum_{i=0}^{2n} w_i^{(c)}
+(\boldsymbol{\chi}_{i,k+1|k} - \hat{\mathbf{x}}_{k+1|k})
+(\mathbf{\mathcal{Z}}_{i,k+1|k} - \hat{\mathbf{z}}_{k+1|k})^\mathsf{T}
+\label{cross_covariance}
+\end{equation}
+
+\noindent The Kalman gain is computed by using \eqref{innovation} and \eqref{cross_covariance}:
+\begin{equation}
+\mathbf{K}_{k+1} = \mathbf{P}_{xz,k+1} \mathbf{S}_{k+1}^{-1}
+\label{kalman_gain}
+\end{equation}
+\noindent Finally, the state mean and covariance are updated using the measurement $\mathbf{z}_{k+1}$ and the Kalman gain \eqref{kalman_gain}:
+\begin{align}
+\hat{\mathbf{x}}_{k+1}^{+} &=
+\hat{\mathbf{x}}_{k+1|k}^{-} +
+\mathbf{K}_{k+1}(\mathbf{z}_{k+1} - \hat{\mathbf{z}}_{k+1|k}) \\
+\mathbf{P}_{k+1}^{+} &=
+\mathbf{P}_{k+1|k}^{-} -
+\mathbf{K}_{k+1} \mathbf{S}_{k+1} \mathbf{K}_{k+1}^\mathsf{T}
+\end{align}
 
 \section{Proposed approach}
 In order to address the limitation of the fixed process noise covariance. We propose a deep learning neural network that is trained on simulation data to dynamically estimate the process noise covariance matrix. This approach enable the filter to adapt to changing condition, improving robustness and maintaining accurate position over time. Since different navigation filtering frameworks handle nonlinear dynamics differently. Applying the same adaptive process noise method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
