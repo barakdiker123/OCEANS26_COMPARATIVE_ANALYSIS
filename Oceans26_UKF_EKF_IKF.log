@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  11 AUG 2026 10:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  11 AUG 2026 13:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -899,64 +899,49 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 200
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
 .fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 4543) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 Accurate po-si-tion-ing is one of the main chal-lenges
+) Excluding 'comment' comment.
+Underfull \hbox (badness 7308) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 Accurate po-si-tion-ing is a fun-da-men-tal chal-lenge in
  []
 
 
-Underfull \hbox (badness 6110) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 in au-tonomous nav-i-ga-tion, par-tic-u-larly in un-der-wa-ter
+Underfull \hbox (badness 10000) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 au-tonomous nav-i-ga-tion, par-tic-u-larly in un-der-wa-ter
  []
 
 
-Underfull \hbox (badness 4954) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 match-ing [[]5[]]. These meth-ods aim to im-prove fil-ter
+Underfull \hbox (badness 3746) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 en-vi-ron-ments where global nav-i-ga-tion satel-lite sys-tem
  []
 
 
-Underfull \hbox (badness 7704) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 fu-sion in chal-leng-ing un-der-wa-ter en-vi-ron-ment, these
+Underfull \hbox (badness 2884) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 Doppler ve-loc-ity log (DVL) ob-ser-va-tions, to es-ti-mate
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 This ap-proach en-ables the fil-ter to adapt to chang-ing
+Underfull \hbox (badness 6078) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 Kalman-filter-based es-ti-ma-tors, in-clud-ing the ex-tended
  []
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 that com-bines model-based in-no-va-tion adap-ta-tion with
+Underfull \hbox (badness 3240) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 Classical ap-proaches for ad-dress-ing model un-cer-tainty
  []
 
 
-Underfull \hbox (badness 1681) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 in [[]6[]]. We in-te-grate this ap-proach into three fil-ter-in
-g
+Underfull \hbox (badness 10000) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 in-clude innovation-based adap-tive es-ti-ma-tion [[]5[]]--[[]7
+[]],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--224
-\OT1/ptm/m/n/10 frameworks|SINNE-EKF, SINNE-UKF, and SINNE-
+Underfull \hbox (badness 10000) in paragraph at lines 238--246
+\OT1/ptm/m/n/10 based co-vari-ance adap-ta-tion with data-driven neu-ral
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--224
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-[]\OT1/ptm/m/n/10 A gen-eral hy-brid adap-tive method com-bin-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-\OT1/ptm/m/n/10 innovation-based and neu-ral noise es-ti-ma-tion,
- []
-
-
-Underfull \vbox (badness 1325) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/pdftex/upd
 map/pdftex.map}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/en
@@ -964,40 +949,43 @@ c/dvips/base/8r.enc}
 
 
 ] Excluding 'comment' comment.
-Overfull \hbox (3.9711pt too wide) detected at line 312
+Overfull \hbox (3.9711pt too wide) detected at line 334
 [][][]\OT1/cmr/bx/n/10 F \OT1/cmr/m/n/10 = []
  []
 
 Excluding 'comment' comment.
-LaTeX Font Info:    Trying to load font information for U+euf on input line 363
+LaTeX Font Info:    Trying to load font information for U+euf on input line 385
 .
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/ueuf
 .fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2]
-<figs/propose_app.png, id=133, 1107.6582pt x 206.6922pt>
+) [2] [3]
+<figs/propose_app.png, id=194, 1107.6582pt x 206.6922pt>
 File: figs/propose_app.png Graphic file (type png)
 <use figs/propose_app.png>
-Package pdftex.def Info: figs/propose_app.png  used on input line 526.
+Package pdftex.def Info: figs/propose_app.png  used on input line 671.
 (pdftex.def)             Requested size: 505.89pt x 94.40147pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3] Excluding 'comment' comment. Excluding 'comment' comment.
+[4] Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
-<figs/prmse.png, id=164, 722.7pt x 358.4592pt>
+<figs/prmse.png, id=228, 722.7pt x 358.4592pt>
 File: figs/prmse.png Graphic file (type png)
 <use figs/prmse.png>
-Package pdftex.def Info: figs/prmse.png  used on input line 724.
+Package pdftex.def Info: figs/prmse.png  used on input line 870.
 (pdftex.def)             Requested size: 246.94499pt x 122.48164pt.
+ [5 <./figs/propose_app.png>]
+(./Oceans26_UKF_EKF_IKF.bbl
+Underfull \hbox (badness 1824) in paragraph at lines 42--44
+[]\OT1/ptm/m/n/8 A. Mo-hamed and K. Schwarz, ``Adap-tive Kalman fil-ter-ing for
 
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-(./Oceans26_UKF_EKF_IKF.bbl [4 <./figs/propose_app.png> <./figs/prmse.png>])
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1009,24 +997,22 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5
-
-] (./Oceans26_UKF_EKF_IKF.aux)
+[6 <./figs/prmse.png>] (./Oceans26_UKF_EKF_IKF.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `Oceans26_UKF_EKF_IKF.out' has not changed.
-(rerunfilecheck)             Checksum: B3FEFED937E9FB8237B20E0C1BF92363;2406.
+(rerunfilecheck)             Checksum: E9F4D337B4372EB468A45D5060F91CD9;2730.
  ) 
 Here is how much of TeX's memory you used:
- 22320 strings out of 467525
- 422788 string characters out of 5408440
- 841982 words of memory out of 5000000
- 50791 multiletter control sequences out of 15000+600000
- 674134 words of font info for 145 fonts, out of 8000000 for 9000
+ 22388 strings out of 467525
+ 423818 string characters out of 5408440
+ 838531 words of memory out of 5000000
+ 50821 multiletter control sequences out of 15000+600000
+ 677882 words of font info for 153 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,118p,1094b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,118p,1839b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/
@@ -1034,23 +1020,27 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cella
 r/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></
 opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmib10.pfb></opt/homebrew/Cellar/texlive/20260301/shar
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/tex
-live/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/ho
-mebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmss8.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20
-260301/share/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></opt/home
-brew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Oceans26_UKF_EKF_IKF.pdf (5 pages, 544250 bytes).
+ype1/public/amsfonts/cm/cmmi9.pfb></opt/homebrew/Cellar/texlive/20260301/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></opt/homebrew/Cellar/tex
+live/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/h
+omebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmss8.pfb></opt/homebrew/Cellar/texlive/2026
+0301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/
+Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.p
+fb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/a
+msfonts/euler/eufm10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/
+20260301/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></opt/homebrew/Cella
+r/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></opt/hom
+ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
+></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on Oceans26_UKF_EKF_IKF.pdf (6 pages, 595933 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 209 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 285 compressed objects within 3 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
