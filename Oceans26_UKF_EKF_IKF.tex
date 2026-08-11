@@ -198,17 +198,18 @@ kitzik@univ.haifa.ac.il}
 
 \maketitle
 
-% \begin{abstract}
+\begin{abstract}
 % This document is a model and instructions for \LaTeX.
 % This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
 % or Math in Paper Title or Abstract.
-% \end{abstract}
-
-% \begin{IEEEkeywords}
-% component, formatting, style, styling, insert.
-% \end{IEEEkeywords}
+  Accurate underwater navigation remains challenging due to the unavailability of global navigation satellite system (GNSS) signals and the time-varying uncertainties affecting inertial and Doppler velocity log (DVL) measurements. Kalman-filter-based navigation methods typically rely on a fixed process noise covariance matrix, which may not adequately represent changing vehicle dynamics, sensor characteristics, and environmental disturbances. This paper proposes SINNE-KF, a hybrid adaptive navigation framework that combines innovation-based covariance adaptation with neural estimation of time-varying inertial sensor noise. The neural network is trained on simulated inertial datasets containing diverse motion profiles and sensor-noise levels and is used to adapt the process noise covariance matrix online. The proposed approach is integrated into three nonlinear filtering frameworks, resulting in SINNE-EKF, SINNE-UKF, and SINNE-RI-IKF. The methods are evaluated under identical conditions on 12 real-world AUV trajectories collected in the Mediterranean Sea, comprising approximately 80.8 minutes of navigation data. Experimental results show that SINNE reduces the mean position RMSE by approximately $30.8\%$, $52.0\%$, and $64.8\%$ for the EKF, UKF, and IKF, respectively, compared with their corresponding fixed-covariance baselines. Among the adaptive formulations, SINNE-IKF achieves the best performance, reducing the mean position RMSE by $42.4\%$ relative to SINNE-UKF and by $57.2\%$ relative to SINNE-EKF. These results demonstrate that the underlying filtering formulation has a significant influence on the benefits obtained from adaptive, data-driven process noise estimation, with the invariant formulation showing the greatest improvement.
+\end{abstract}
+\begin{IEEEkeywords}
+component, formatting, style, styling, insert.
+\end{IEEEkeywords}
 
 \section{Introduction}
+\begin{comment}
 %קשיים בניווט ימי
 \noindent Accurate positioning is one of the main challenges in autonomous navigation, particularly in underwater environments. For autonomous underwater vehicles (AUVs), this challenge is even greater because global navigation satellite system signals are unavailable underwater. As a result, AUVs must rely on onboard sensor fusion to estimate their position, velocity, and orientation. \\ 
 %פליטרים והיתוך הצגת הבעיה 
@@ -217,7 +218,7 @@ kitzik@univ.haifa.ac.il}
 \noindent Common approaches for handling model uncertainty in state estimation include adaptive filtering techniques such as innovation-based adaptive estimation \cite{mohamed1999adaptive} and covariance matching \cite{meng2016covariance}. These methods aim to improve filter performance by adjusting the process and/or measurement noise covariance matrices, based on statistical properties of the filter innovation. \\
 \noindent While these methods help adapt the filter to changing conditions, they rely on assumptions like Gaussian noise and short-term stability. In complex, nonlinear inertial/DVL fusion in challenging underwater environment, these assumptions often do not hold. As a result, classical adaptive methods may not capture changing disturbances well, leading to reduced accuracy and drift, and they can also be sensitive to parameter tuning. 
 %מה עשינו
-\noindent In this work, we address this limitation by using a deep learning network trained on simulation data to dynamically estimate the process covariance matrix. This approach enables the filter to adapt to changing conditions, improving robustness and maintaining accurate positioning over time. Since different navigation filtering frameworks handle nonlinear dynamics differently, applying the same adaptive process noise covariance method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
+\noindent In this work, we address this limitation by using a deep learning network trained on simulation data to dynamically estimate the process covariance matrix and combine this with adaptive innovation model-based algorithm. This approach enables the filter to adapt to changing conditions, improving robustness and maintaining accurate positioning over time. Since different navigation filtering frameworks handle nonlinear dynamics differently, applying the same adaptive process noise covariance method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
 %מה אנחנו מציעים
 \noindent We propose SINNE-KF, an adaptive navigation approach that combines model-based innovation adaptation with data-driven neural estimation of inertial sensor noise. The neural network is trained on simulated inertial datasets generated from trajectories with varying motion profiles and sensor-noise levels, following the methodology introduced in \cite{diker2026neural}. We integrate this approach into three filtering frameworks—SINNE-EKF, SINNE-UKF, and SINNE-IKF—and evaluate them on real-world AUV data from the Mediterranean Sea to determine which framework benefits most from accurate, time-varying process noise covariance estimation.\\
 The main contributions of this article are: \\
@@ -225,12 +226,33 @@ The main contributions of this article are: \\
     \item A general hybrid adaptive method combining innovation-based and neural noise estimation, applicable to multiple Kalman filter variants, including the EKF, UKF, and IKF.
   \item Real-world validation and comparison using AUV data from the Mediterranean Sea to identify which filter benefits most from adaptive process noise covariance estimation.
 \end{enumerate}
-
-
+On 12 AKIT trajectories\cite{cohen2025adaptive}, the SINNE-IKF approach reduces position
+RMSE by 42.4\% over the SINNE-UKF. \\
+The rest of the paper is organized as follows:
+Section~\ref{sec:problem_formulation} introduces the basics of each estimator: EKF, UKF and IKF.
+Section~\ref{sec:proposed_approach} presents our hybrid adaptive process 
+noise estimation methodology.
+Section~\ref{sec:results} gives the results and
+Section~\ref{sec:conclusion} concludes the paper.
+\end{comment}
+\noindent Accurate positioning is a fundamental challenge in autonomous navigation, particularly in underwater environments where global navigation satellite system (GNSS) signals are unavailable. Autonomous underwater vehicles (AUVs) must therefore rely on onboard sensor fusion, commonly combining inertial measurements with Doppler velocity log (DVL) observations, to estimate position, velocity, and orientation. \\
+\noindent Kalman-filter-based estimators, including the extended Kalman filter (EKF), unscented Kalman filter (UKF) \cite{wan2001unscented}, and right invariant Kalman filter (RI-IKF) \cite{barrau2018invariant}, provide established frameworks for inertial/DVL sensor fusion \cite{groves2013principles,10.5555/1594745}. Their performance, however, depends strongly on the selection of the process noise covariance matrix $\mathbf{Q}$, which is commonly assumed to be constant and manually tuned. In practical AUV operation, vehicle dynamics, maneuver intensity, sensor characteristics, and external disturbances vary over time. Consequently, a fixed $\mathbf{Q}$ may not adequately represent the uncertainty of the navigation model, resulting in inconsistent estimation and increased navigation error. \\
+\noindent Classical approaches for addressing model uncertainty include innovation-based adaptive estimation \cite{mohamed1999adaptive,kost2022measurement,magill1965optimal}, covariance-matching techniques \cite{meng2016covariance,mehra1972approaches} and more recently neural adaptive approaches \cite{11361209,cohen2024inertial}
+. These approaches adapt the process and/or measurement noise covariance matrices using statistical properties of the filter innovation. Although effective in many applications, their performance depends on the quality of the innovation statistics, the selected adaptation window, and several tuning parameters, which may limit their ability to respond to rapidly changing operating conditions. \\
+\noindent In this work, we propose SINNE-KF, a general hybrid adaptive navigation framework that combines innovation-based covariance adaptation with data-driven neural estimation of time-varying inertial sensor noise. The neural network is trained on simulated inertial datasets generated from trajectories with varying motion profiles and sensor-noise levels, following the methodology introduced in \cite{diker2026neural}. The estimated inertial noise parameters are incorporated into the process noise covariance matrix and combined with information obtained from the filter innovations, allowing $\mathbf{Q}$ to adapt online to changing navigation conditions. \\
+\noindent A central objective of this work is to examine how the same adaptive covariance-estimation mechanism interacts with different nonlinear filtering formulations. Accordingly, SINNE-KF is integrated into three navigation frameworks, resulting in SINNE-EKF, SINNE-UKF, and SINNE-IKF. The three approaches are evaluated under identical sensor and adaptation conditions using real-world AUV trajectories collected in the Mediterranean Sea. This comparison allows us to determine whether the underlying filtering formulation influences the benefit obtained from adaptive process noise covariance estimation.\\
+The main contributions of this article are: 
+\begin{enumerate}
+\item A general hybrid adaptive process-noise estimation method combining innovation-based adaptation and neural inertial-noise estimation, applicable to the EKF, UKF, and RI-IKF.
+\item A systematic real-world comparison of SINNE-EKF, SINNE-UKF, and SINNE-IKF on AUV trajectories, quantifying how different filtering formulations benefit from the same adaptive covariance-estimation mechanism.
+\end{enumerate}
+\noindent Experimental evaluation on 12 A-KIT trajectories \cite{cohen2025adaptive} shows that SINNE improves all three filtering frameworks, with the largest improvement obtained by the invariant formulation. In particular, SINNE-IKF achieves a mean position RMSE of $7.61$~m compared with $13.21$~m for SINNE-UKF, corresponding to a $42.4\%$ reduction in position RMSE.
+\noindent The remainder of this paper is organized as follows. Section~\ref{sec:problem_formulation} introduces the EKF, UKF, and RI-IKF navigation formulations. Section~\ref{sec:proposed_approach} presents the proposed hybrid adaptive process noise estimation method,namely SINNE-KF. Section~\ref{sec:results} presents the experimental results, and Section~\ref{sec:conclusion} concludes the paper.
 \section{Problem Formulation}
-Before we introduce the adaptive approach SINNE-KF that can be employed by EKF, UKF and IKF. We will introduce how each estimator deals with non-linearity. \\
+\label{sec:problem_formulation}
+Before we introduce the adaptive approach SINNE-KF that can be employed by EKF, UKF and RI-IKF. We will introduce how each estimator deals with non-linearity. \\
 \begin{comment}
-Acquiring a navigation solution given a inertial and DVL reading of an underwater vehicle has many approach. In this paper we have compared and benchmark the performance of three popular adaptive estimators which are the EKF, UKF and the IKF. This section will introduced each estimator and the adaptive approach.  \\
+Acquiring a navigation solution given a inertial and DVL reading of an underwater vehicle has many approach. In this paper we have compared and benchmark the performance of three popular adaptive estimators which are the EKF, UKF and the RI-IKF. This section will introduced each estimator and the adaptive approach.  \\
 \end{comment}
 In all of the following Kalman filter variants the inertial navigation equations are in ECEF frame.
 \begin{equation}
@@ -353,10 +375,10 @@ where \(f_\theta\) is the neural network, \(\mathcal{W}\) is the window of last 
 \subsection{Invariant Kalman filter}
 The right-invariant error-state model is formulated in ECEF frame following \cite{barrau2018invariant} \cite{luo2021se2} by convention
 \begin{equation}
-  \label{ikf_err}
+  \label{RI-ikf_err}
 \mathbf{\eta}^{R}=\hat{\mathbf X}\mathbf X^{-1} = exp((\xi^R)^\wedge) 
 \end{equation}
-where
+where 
 \begin{equation}
   exp(A)
 = \sum_{k=0}^{\infty} \frac{A^k}{k!}
@@ -382,7 +404,7 @@ and
 0_{1\times 3} & 0 & 1
 \end{bmatrix} \in SE_2(3)
 \end{equation}
-is the state encoded in Lie group. \\ 
+is the state encoded in Lie group. \(\mathbf{X}\) is the GT state and \(\mathbf{\hat{X}}\) is the estimated state.  \\ 
 Given that, the right invariant error is 
 \begin{equation}
 \eta^{R}
@@ -504,7 +526,7 @@ and the noise shaping matrix is
 & \mathbf I_3
 \end{bmatrix}
 \end{equation}
-where the measuremenet model of the IKF is
+where the measuremenet model of the RI-IKF is
 \begin{equation}
 \mathbf H_{\mathrm{DVL}}
 =
@@ -512,11 +534,8 @@ where the measuremenet model of the IKF is
 \mathbf 0_{3\times3} & -\mathbf I_3 & \mathbf 0_{3\times9}
 \end{bmatrix}
 \end{equation}
-  
-
-
-
-
+For calculating the Kalman gain, posterior state covariance, posterior state read \cite{luo2021se2} or \cite{diker2026neural}.  
+\subsection{Unscented Kalman filter}
 \subsection{Unscented Kalman filter}
 Consider the initialized state vector $\mathbf{x}_0$ with a known mean and covariance:
 %
@@ -535,7 +554,7 @@ w_i^{(m)} &= w_i^{(c)} = \frac{1}{2(n + \lambda)}, \quad i = 1, \ldots, 2n,
 where $n$ is the dimension of the state vector and
 $\lambda = \alpha^2 (n + \kappa) - n$.
 The parameters $\alpha$, $\beta$, and $\kappa$ control the spread and weighting of the sigma points and are addressed as hyperparameters. Typically, $\alpha = 10^{-3}$, $\kappa = 0$, and $\beta = 2$ for
-Gaussian distributions~\cite{nielsen2021ukf}.
+Gaussian distributions~\cite{9591188}.
 %
 \subsubsection{Sigma Points}
 %
@@ -583,8 +602,8 @@ Gaussian distributions~\cite{nielsen2021ukf}.
 \begin{align}
 \mathbf{\mathcal{Z}}_{i,k+1|k}
 &=
-h\left(\mathbf{\chi}_{i,k+1|k}\right)
-=
+h\left(\mathbf{\chi}_{i,k+1|k}\right) \\
+&=
 \mathbf{C}_b^n
 \left(
 \mathbf{I}-\boldsymbol{\phi}^{n\wedge}
@@ -593,8 +612,8 @@ h\left(\mathbf{\chi}_{i,k+1|k}\right)
 \mathbf{v}^n+\delta\hat{\mathbf{v}}_n^i
 \right]
 -
-\mathbf{C}_b^n\mathbf{v}^n,
-\qquad i=0,\ldots,2n
+\mathbf{C}_b^n\mathbf{v}^n \\
+& \qquad i=0,\ldots,2n
 \end{align}
 
 \noindent The predicted measurement mean and covariance are computed as:
@@ -619,7 +638,6 @@ h\left(\mathbf{\chi}_{i,k+1|k}\right)
 \label{innovation}
 \end{align}
 
-\noindent where $\mathbf{R}_{k+1}$ is the covariance measurement matrix noise in time stamp k+1.
 
 \noindent The cross-covariance matrix is define by:
 \begin{equation}
@@ -644,16 +662,16 @@ h\left(\mathbf{\chi}_{i,k+1|k}\right)
 \mathbf{P}_{k+1|k}^{-} -
 \mathbf{K}_{k+1} \mathbf{S}_{k+1} \mathbf{K}_{k+1}^\mathsf{T}
 \end{align}
-
 \section{Proposed approach}
+\label{sec:proposed_approach}
 In order to address the limitation of the fixed process noise covariance. We propose a deep learning neural network that is trained on simulation data to dynamically estimate the process noise covariance matrix. This approach enable the filter to adapt to changing condition, improving robustness and maintaining accurate position over time. Since different navigation filtering frameworks handle nonlinear dynamics differently. Applying the same adaptive process noise method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
 \begin{figure*}[h]
     \centering
     \includegraphics[width=1.0\linewidth]{figs/propose_app.png}
-    \caption{Overview of the proposed SINNE-KF-aided navigation framework. A sliding window of recent inertial measurements is processed by SINNE-KF to estimate the inertial sensor noise standard deviations, which are then used to adapt the process noise covariance matrix of the selected navigation filter (EKF, UKF, or IKF). In parallel, the raw inertial and DVL measurements are directly fused by the navigation filtering framework for state estimation.}
+    \caption{Overview of the proposed SINNE-KF-aided navigation framework. A sliding window of recent inertial measurements is processed by SINNE-KF to estimate the inertial sensor noise standard deviations, which are then used to adapt the process noise covariance matrix of the selected navigation filter (EKF, UKF, or RI-IKF). In parallel, the raw inertial and DVL measurements are directly fused by the navigation filtering framework for state estimation.}
     \label{propose_app}
 \end{figure*}
-We propose the sim2real inertial neural adaptive process covariance learning network for Kalman filtering (SINNE-KF). In which we generate simulated inertial datasets based on trajectories with varying motion profiles and sensor noise levels, consistent with the methodology introduced in \cite{diker2026neural}. In this framework, a light and efficient neural network is trained to estimate the standard deviation of the accelerometer and gyroscope measurements. During testing, the trained model is evaluated on real data collected in trials conducted in the Mediterranean sea, from sensors mounted on an AUV. The estimated noise parameters are then used within one of the filtering framework EKF, UKF or IKF to improve state estimation accuracy under real-world conditions. The overall pipeline of the proposed method is illustrated in Fig. \ref{propose_app}. \\
+We propose the sim2real inertial neural adaptive process covariance learning network for Kalman filtering (SINNE-KF). In which we generate simulated inertial datasets based on trajectories with varying motion profiles and sensor noise levels, consistent with the methodology introduced in \cite{diker2026neural}. In this framework, a light and efficient neural network is trained to estimate the standard deviation of the accelerometer and gyroscope measurements. During testing, the trained model is evaluated on real data collected in trials conducted in the Mediterranean sea, from sensors mounted on an AUV. The estimated noise parameters are then used within one of the filtering framework EKF, UKF or RI-IKF to improve state estimation accuracy under real-world conditions. The overall pipeline of the proposed method is illustrated in Fig. \ref{propose_app}. \\
 The adaptive process covariance of SINNE-KF is consists of two parts. The first part is the data-driven sim2real neural network that ultilize past inertial window to learn the process noise covariance and all the Kalman filter SINNE-KF variants that is EKF-SINNE, UKF-SINNE and IKF-SINNE, uses the same neural network with the same weights. The second part is the model-based approach that exploits past innovation window in order to extract process noise covariance matrix namely the adaptive innovation based approach. For the UKF-SINNE and EKF-SINNE our approach follows the approach of \cite{mohamed1999adaptive} but for the adaptive innovation based IKF-SINNE we have imployed the approach from \cite{diker2026neural}.
 \subsection{Data-driven neural inertial learning approach}
 The neural-learning-based approach in \cite{diker2026neural} maps a
@@ -707,13 +725,13 @@ The adaptive innovation-based process noise in steady state is given by \cite{mo
   \mathbf{Q}_{innov} = \frac{1}{N} \sum_{n=0}^N K_n \nu_n \nu^T_n K_n^T
 \end{equation}
 where \(\mathbf{K}_n\) is the Kalman gain at step \(n\) given by the EKF or the UKF and \(\nu_n\) is the innovation as given by \eqref{ekf_innovation} at step \(n\)
-\subsection{Adaptive innovation model-based approach IKF}
+\subsection{Adaptive innovation model-based approach RI-IKF}
 While the EKF and UKF has difference between the prior and the posterior is given by
 \begin{equation}
 x - \hat{x} = K \nu 
 \end{equation}
 where \(\boldsymbol x\in \mathbb{R}^{15}\) is the posterior state, \(\hat{\boldsymbol x}\in\mathbb{R}^{15}\) is the prior state and \(\mathbf K\) is the Kalman gain. \\
-The IKF difference between the prior and posterior state is given by \eqref{ikf_err} which is 
+The RI-IKF difference between the prior and posterior state is given by \eqref{RI-ikf_err} which is 
 \begin{equation}
 (\xi^R)^\wedge = log(\hat{\mathbf X}\mathbf X^{-1})
 \end{equation}
@@ -727,7 +745,7 @@ where the function
 is a nonlinear mapping from the Lie group \(SE_2(3)\) into the Lie algebra \(\mathfrak{se}_2(3)\) and \(\mathbf X\) is given from \eqref{state_embbed} \\ 
 As shown in \cite{diker2026neural} the adaptive innovation-based process noise covariance that is derived from Lie innovation is
 \begin{equation}
-  \label{innov_ikf}
+  \label{innov_RI-ikf}
 \mathbf Q_{innov} = \frac{1}{N}\sum_{n=1}^N log(\hat{\mathbf X}\mathbf X^{-1})^{\vee} log(\hat{\mathbf X}\mathbf X^{-1})^{\vee,T} 
 \end{equation}
 where \(\mathbf X\) is the posterior state and \(\hat{\mathbf X}\) is the prior state and the mapping \((.)^{\vee}\) is given by
@@ -764,10 +782,10 @@ Ultimately, The discrete-time process-noise covariance used by all Kalman filter
 \mathbf{Q}_{d,\mathrm{innovation}}
 \right)
 \end{equation}
-where the neural process noise covariance \(\mathbf{Q}_{c,\mathrm{neural}}\) is obtained by the same neural network with the same weights in all variants EKF-SINNE, UKF-SINNE and IKF-SINNE. The innovation based covariance in EKF-SINNE and UKF-SINNE given by \eqref{innovation_process_noise} and the innovation based covariance \(\mathbf{Q}_{d,\mathrm{innovation}}\) in IKF-SINNE is given by \eqref{innov_ikf}.
+where the neural process noise covariance \(\mathbf{Q}_{c,\mathrm{neural}}\) is obtained by the same neural network with the same weights in all variants EKF-SINNE, UKF-SINNE and IKF-SINNE. The innovation based covariance in EKF-SINNE and UKF-SINNE given by \eqref{innovation_process_noise} and the innovation based covariance \(\mathbf{Q}_{d,\mathrm{innovation}}\) in IKF-SINNE is given by \eqref{innov_RI-ikf}.
 \begin{comment}
 In this paper we have compared between those 3 approaches to enable the underwater navigation engineer to select the most fited approach. 
-Those estimator are adapted with innovation based technique and a neural based learning algorithm that given an inertial window output the process noise covariance. In order to ensure fair comparison each estimator uses adapt the process noise covariance by taking half of the innovation based process noise and half from the neural learning based approach. The neural learning based network is trained using sim2real and the same network with the same weights are deployed in each estimator EKF, UKF and IKF. The adaptive    
+Those estimator are adapted with innovation based technique and a neural based learning algorithm that given an inertial window output the process noise covariance. In order to ensure fair comparison each estimator uses adapt the process noise covariance by taking half of the innovation based process noise and half from the neural learning based approach. The neural learning based network is trained using sim2real and the same network with the same weights are deployed in each estimator EKF, UKF and RI-IKF. The adaptive    
 \end{comment}
 \begin{comment}
 Table \ref{tab:neuralnetwork1} presents the architecture of the proposed SINNE-KF, which is designed to be both lightweight and computationally efficient.
@@ -795,7 +813,8 @@ FC        & 6   & Softplus activation \\
 \end{table}
 \end{comment}
 \section{Analysis and Results}
-\noindent The dataset used for the evaluation of our results was acquired by the Snapir AUV during maneuvers in the Mediterranean Sea, with a total mission duration of 4,800 seconds. \\
+\label{sec:results}
+\noindent The dataset used for the evaluation of our results was acquired by the Snapir AUV during maneuvers in the Mediterranean Sea \cite{cohen2025adaptive}, with a total mission duration of 4,800 seconds. To ensure a consistent and controlled evaluation across all filtering frameworks, additional white noise was injected into the inertial and DVL measurements. The accelerometer measurements were corrupted with white noise having a standard deviation of $4\times10^{-3},\mathrm{m/s^2}$, the gyroscope measurements with a standard deviation of $1\times10^{-4},\mathrm{rad/s}$, and the DVL measurements with a standard deviation of $5\times10^{-3},\mathrm{m/s}$. The same noise realization and noise levels were applied consistently to all evaluated filtering methods to ensure a fair comparison. \\
 \begin{comment}
 \subsection{Dataset and Baselines}
 \label{sec:dataset}
@@ -814,14 +833,14 @@ Figure \ref{fig:Snapir} shows the AUV during experiments. \\
 \item SINNE-EKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
 \item A standard UKF with fixed $\mathbf{Q}$.
 \item SINNE-UKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
-\item a standard IKF with fixed $\mathbf{Q}$.
+\item a standard RI-IKF with fixed $\mathbf{Q}$.
 \item SINNE-IKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
 \end{enumerate}
 
-(1)~a standard \textbf{EKF} with fixed $\mathbf{Q}$ , (2) ~\textbf{SINNE-EKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (3)~a standard \textbf{UKF} with fixed $\mathbf{Q}$ , (4) ~\textbf{SINNE-UKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (5)~a standard \textbf{IKF} with fixed $\mathbf{Q}$ , (6) ~\textbf{SINNEN-IKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net. \\
+(1)~a standard \textbf{EKF} with fixed $\mathbf{Q}$ , (2) ~\textbf{SINNE-EKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (3)~a standard \textbf{UKF} with fixed $\mathbf{Q}$ , (4) ~\textbf{SINNE-UKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (5)~a standard \textbf{RI-IKF} with fixed $\mathbf{Q}$ , (6) ~\textbf{SINNEN-IKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net. \\
 \subsection{Results}
 \end{comment}
-\noindent We evaluate the filtering frameworks EKF, UKF and IKF with and without the proposed SINNE-KF against the post-processed reference solution. Table \ref{tab:filter_results} shows the performance of each navigation frameworks in terms of root mean square error (RMSE) for the position (PRMSE), velocity (VRMSE)and heading angle (YRMSE).\\
+\noindent We evaluate the filtering frameworks EKF, UKF and RI-IKF with and without the proposed SINNE-KF against the post-processed reference solution. Table \ref{tab:filter_results} shows the performance of each navigation frameworks in terms of root mean square error (RMSE) for the position (PRMSE), velocity (VRMSE)and heading angle (YRMSE).\\
 \begin{table}[h!]
 \centering
 \caption{Comparison of filtering methods for the Snapir AUV, averaged over 12 trajectories}
@@ -837,35 +856,38 @@ UKF        & 27.51 & 0.25 & 4.01 \\
 \hline
 UKF SINNE  & 13.21 & 0.18 & 3.52 \\
 \hline
-IKF        & 21.64 & 0.24 & 3.42 \\
+RI-IKF        & 21.64 & 0.24 & 3.42 \\
 \hline
-IKF SINNE  & \textbf{7.61}  & \textbf{0.17} & \textbf{3.32} \\
+RI-IKF SINNE  & \textbf{7.61}  & \textbf{0.17} & \textbf{3.32} \\
 \hline
 \end{tabular}
 \label{tab:filter_results}
 \end{table}
-\noindent The results demonstrate a clear and consistent improvement when incorporating the SINNE approach across all filtering methods. In terms of position accuracy (PRMSE), every baseline filter benefits significantly from SINNE, with reductions of approximately 31\% for EKF, 52\% for UKF, and 65\% for IKF, with the IKF showing the most substantial improvement . A similar trend is observed in the velocity estimates (VRMSE), where SINNE variants reduce the error by about 18–28\%, with IKF-SINNE achieving the best performance at 0.17 m/s. For heading estimation (YRMSE), the improvements are more moderate, on the order of 5–11\%, indicating enhanced stability while maintaining accurate orientation estimates. Overall, the UKF-SINNE and especially the IKF SINNE significantly outperform their standard counterparts, highlighting the effectiveness of the adaptive approach in reducing estimation errors and improving robustness across all evaluated states. A histogram of PRMSE for each of the methods is shown in Figure \ref{his_prmse}.
+\noindent The results demonstrate a clear and consistent improvement when incorporating the SINNE approach across all filtering methods. In terms of position accuracy (PRMSE), every baseline filter benefits significantly from SINNE, with reductions of approximately 31\% for EKF, 52\% for UKF, and 65\% for RI-IKF, with the RI-IKF showing the most substantial improvement . A similar trend is observed in the velocity estimates (VRMSE), where SINNE variants reduce the error by about 18–28\%, with IKF-SINNE achieving the best performance at 0.17 m/s. For heading estimation (YRMSE), the improvements are more moderate, on the order of 5–11\%, indicating enhanced stability while maintaining accurate orientation estimates. Overall, the UKF-SINNE and especially the RI-IKF SINNE significantly outperform their standard counterparts, highlighting the effectiveness of the adaptive approach in reducing estimation errors and improving robustness across all evaluated states. A histogram of PRMSE for each of the methods is shown in Figure \ref{his_prmse}.
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{figs/prmse.png}
-    \caption{PRMSE of each method: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+    \caption{PRMSE of each method: EKF, SINNE-EKF, UKF, SINNE-UKF, RI-IKF, SINNE-IKF}
     \label{his_prmse}
 \end{figure}
 % \begin{figure}
 %     \centering
 %     \includegraphics[width=1\linewidth]{vrmse.png}
-%     \caption{VRMSE of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+%     \caption{VRMSE of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, RI-IKF, SINNE-IKF}
 %     \label{fig:placeholder}
 % \end{figure}
 % \begin{figure}
 %     \centering
 %     \includegraphics[width=1\linewidth]{myaw.png}
-%     \caption{MYAW of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+%     \caption{MYAW of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, RI-IKF, SINNE-IKF}
 %     \label{fig:placeholder}
 % \end{figure}
-\section{Relevance to the OCEANS community}
-%WTF
-\noindent The relevance of this work to the OCEANS community lies in the need for accurate and robust navigation in underwater systems used for scientific,  and commercial applications. This work directly addresses a key limitation in current navigation systems: the sensitivity of inertial/DVL sensor fusion to improperly tuned process noise parameters. By introducing a data-driven method to adaptively estimate process noise characteristics, the proposed approach improves the reliability and long-term stability of classical navigation filters under realistic and time-varying ocean conditions. This results in reduced drift and improved localization accuracy, both of which are critical for successful deep-sea operations.
+\section{Conclusion}
+\label{sec:conclusion}
+\noindent This paper presented SINNE-KF, a hybrid adaptive navigation framework that combines innovation-based covariance adaptation with neural estimation of time-varying inertial sensor noise. The proposed method was incorporated into three nonlinear filtering frameworks, resulting in SINNE-EKF, SINNE-UKF, and SINNE-RI-IKF. This formulation enabled a direct comparison of how different Kalman filtering approaches benefit from the same adaptive process noise covariance estimation mechanism. \\
+\noindent The proposed approaches were evaluated on 12 real-world AUV trajectories collected in the Mediterranean Sea, with a total navigation duration of 4,800 seconds. To provide a controlled and consistent comparison, additional white noise was applied to the inertial and DVL measurements, and identical noise conditions were used for all evaluated filtering frameworks. The experimental results demonstrated that adaptive process noise estimation improves the position accuracy of all three filtering approaches. Compared with their corresponding fixed-covariance baselines, SINNE reduced the mean position RMSE by approximately $30.8\%$, $52.0\%$, and $64.8\%$ for the EKF, UKF, and IKF, respectively.\\
+\noindent Among the evaluated methods, SINNE-IKF achieved the best overall navigation performance. In particular, its mean position RMSE was reduced by $42.4\%$ relative to SINNE-UKF and by $57.2\%$ relative to SINNE-EKF. The results therefore indicate that the benefit obtained from adaptive process noise estimation depends strongly on the underlying filtering formulation. In particular, the invariant error representation appears to provide a more suitable framework for exploiting time-varying covariance information in nonlinear inertial/DVL navigation. \\
+\noindent These findings demonstrate that combining model-based innovation information with data-driven inertial noise estimation can substantially improve underwater navigation performance without restricting the adaptation mechanism to a particular Kalman filter formulation. Future work will investigate joint adaptation of the process and measurement noise covariance matrices, evaluate the proposed framework under additional vehicle dynamics and environmental conditions, and study its real-time implementation and computational requirements for onboard AUV navigation.
 \bibliographystyle{IEEEtran}
 \bibliography{bio.bib}
 \end{document}
