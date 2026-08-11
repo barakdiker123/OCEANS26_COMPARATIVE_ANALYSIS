@@ -1,0 +1,745 @@
+% \documentclass[conference]{IEEEtran}
+% \IEEEoverridecommandlockouts
+% % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% %Template version as of 6/27/2024
+% \usepackage[letterpaper, 
+%             top=1in,        % 72pt top margin (first page)
+%             bottom=0.75in,  % 54pt bottom margin
+%             left=0.75in,    % 54pt left margin
+%             right=0.75in]   % 54pt right margin
+%             {geometry}
+% \usepackage{cite}
+% \usepackage{amsmath,amssymb,amsfonts}
+% \usepackage{algorithmic}
+% \usepackage{graphicx}
+% \usepackage{textcomp}
+% \usepackage{orcidlink}
+% \usepackage{xcolor}
+% \usepackage{comment}
+% \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+
+% \makeatletter
+% \newcommand{\newlineauthors}{%
+%   \end{@IEEEauthorhalign}\hfill\mbox{}\par
+%   \mbox{}\hfill\begin{@IEEEauthorhalign}
+% }
+% \makeatother
+    
+% \begin{document}
+
+% \title{Adaptive Process Noise Estimation in Sim2Real Frameworks: A Comparative Analysis Across Nonlinear Kalman Filters
+% }
+
+% \author{\IEEEauthorblockN{1\textsuperscript{st} Barak Diker~\orcidlink{0009-0003-4551-3061}~\IEEEmembership{Graduate Student Member,~IEEE}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% bdiker01@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{2\textsuperscript{nd} Gal Versano~ \orcidlink{0009-0007-7766-2511}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% gversano@staff.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{3\textsuperscript{rd}  Nadav Cohen~\orcidlink{0000-0002-8249-0239}~\IEEEmembership{Graduate Student Member,~IEEE}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% ncohe140@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Amit Levy~ \orcidlink{0009-0009-8703-5807}} 
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% alevy02@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{5\textsuperscript{th} Itzik Klein~ \orcidlink{0000-0001-7846-0654},~\IEEEmembership{Senior Member,~IEEE} }
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% kitzik@univ.haifa.ac.il}
+
+% }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[letterpaper, 
+            top=1in,        % 72pt top margin (first page)
+            bottom=0.75in,  % 54pt bottom margin
+            left=0.75in,    % 54pt left margin
+            right=0.75in]   % 54pt right margin
+            {geometry}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{orcidlink}
+\usepackage{xcolor}
+\usepackage{comment}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\setlength{\parindent}{0pt}
+\begin{document}
+
+\title{Adaptive Process Noise Estimation in Sim2Real Frameworks: A Comparative Analysis Across Nonlinear Kalman Filters}
+
+% \author{\IEEEauthorblockN{1\textsuperscript{st} Barak Diker~\orcidlink{0009-0003-4551-3061}~\IEEEmembership{Graduate Student Member,~IEEE}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% bdiker01@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{2\textsuperscript{nd} Gal Versano~\orcidlink{0009-0007-7766-2511}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% gversano@staff.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{3\textsuperscript{rd} Nadav Cohen~\orcidlink{0000-0002-8249-0239}~\IEEEmembership{Graduate Student Member,~IEEE}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% ncohe140@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Amit Levy~\orcidlink{0009-0009-8703-5807}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% alevy02@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{5\textsuperscript{th} Itzik Klein~\orcidlink{0000-0001-7846-0654}~\IEEEmembership{Senior Member,~IEEE}}
+% \IEEEauthorblockA{\textit{The Hatter Department of Marine Technologies} \\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% kitzik@univ.haifa.ac.il}
+% }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{\IEEEauthorblockN{1\textsuperscript{st} Barak Diker~\orcidlink{0009-0003-4551-3061}}
+\IEEEauthorblockA{\textit{Hatter Dept of Marine Technologies} \\
+\textit{University of Haifa}\\
+Haifa, Israel \\
+bdiker01@campus.haifa.ac.il}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Gal Versano~\orcidlink{0009-0007-7766-2511}}
+\IEEEauthorblockA{\textit{Hatter Dept of Marine Technologies} \\
+\textit{University of Haifa}\\
+Haifa, Israel \\
+gversano@staff.haifa.ac.il}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Nadav Cohen~\orcidlink{0000-0002-8249-0239}}
+\IEEEauthorblockA{\textit{Hatter Dept of Marine Technologies} \\
+\textit{University of Haifa}\\
+Haifa, Israel \\
+ncohe140@campus.haifa.ac.il}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Amit Levy~\orcidlink{0009-0009-8703-5807}}
+\IEEEauthorblockA{\textit{Hatter Dept of Marine Technologies} \\
+\textit{University of Haifa}\\
+Haifa, Israel \\
+alevy02@campus.haifa.ac.il}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Itzik Klein~\orcidlink{0000-0001-7846-0654}}
+\IEEEauthorblockA{\textit{Hatter Dept of Marine Technologies} \\
+\textit{University of Haifa}\\
+Haifa, Israel \\
+kitzik@univ.haifa.ac.il}
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \author{\IEEEauthorblockN{1\textsuperscript{st} Barak Diker~\orcidlink{0009-0003-4551-3061}}
+% \IEEEauthorblockA{\textit{The Hatter Department} \\
+% \textit{of Marine Technologies}\\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% bdiker01@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{2\textsuperscript{nd} Gal Versano~\orcidlink{0009-0007-7766-2511}}
+% \IEEEauthorblockA{\textit{The Hatter Department} \\
+% \textit{of Marine Technologies}\\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% gversano@staff.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{3\textsuperscript{rd} Nadav Cohen~\orcidlink{0000-0002-8249-0239}}
+% \IEEEauthorblockA{\textit{The Hatter Department} \\
+% \textit{of Marine Technologies}\\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% ncohe140@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Amit Levy~\orcidlink{0009-0009-8703-5807}}
+% \IEEEauthorblockA{\textit{The Hatter Department} \\
+% \textit{of Marine Technologies}\\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% alevy02@campus.haifa.ac.il}
+% \and
+% \IEEEauthorblockN{5\textsuperscript{th} Itzik Klein~\orcidlink{0000-0001-7846-0654}}
+% \IEEEauthorblockA{\textit{The Hatter Department} \\
+% \textit{of Marine Technologies}\\
+% \textit{University of Haifa}\\
+% Haifa, Israel \\
+% kitzik@univ.haifa.ac.il}
+% }
+
+\maketitle
+
+% \begin{abstract}
+% This document is a model and instructions for \LaTeX.
+% This and the IEEEtran.cls file define the components of your paper [title, text, heads, etc.]. *CRITICAL: Do Not Use Symbols, Special Characters, Footnotes, 
+% or Math in Paper Title or Abstract.
+% \end{abstract}
+
+% \begin{IEEEkeywords}
+% component, formatting, style, styling, insert.
+% \end{IEEEkeywords}
+
+\section{Introduction}
+%קשיים בניווט ימי
+\noindent Accurate positioning is one of the main challenges in autonomous navigation, particularly in underwater environments. For autonomous underwater vehicles (AUVs), this challenge is even greater because global navigation satellite system signals are unavailable underwater. As a result, AUVs must rely on onboard sensor fusion to estimate their position, velocity, and orientation. \\ 
+%פליטרים והיתוך הצגת הבעיה 
+\noindent Filtering methods such as the unscented Kalman filter (UKF) \cite{wan2001unscented}, extended Kalman filter (EKF), and invariant Kalman filter (IKF) \cite{barrau2018invariant} provide a framework for combining data from inertial sensors and Doppler velocity log (DVL) \cite{groves2013principles}. However, their long-term performance is often limited by the use of a fixed, manually tuned process noise covariance matrix. In real-world conditions, platform dynamics, sensor degradation, and disturbances, such as changing sea currents and motor vibrations, vary over time. As a consequence, the constant process noise covariance matrix cannot properly capture these effects. This leads to growing estimation errors and, eventually, significant drift.\\
+%שיטות אדפיטביות הידועות עד כה 
+\noindent Common approaches for handling model uncertainty in state estimation include adaptive filtering techniques such as innovation-based adaptive estimation \cite{mohamed1999adaptive} and covariance matching \cite{meng2016covariance}. These methods aim to improve filter performance by adjusting the process and/or measurement noise covariance matrices, based on statistical properties of the filter innovation. \\
+\noindent While these methods help adapt the filter to changing conditions, they rely on assumptions like Gaussian noise and short-term stability. In complex, nonlinear inertial/DVL fusion in challenging underwater environment, these assumptions often do not hold. As a result, classical adaptive methods may not capture changing disturbances well, leading to reduced accuracy and drift, and they can also be sensitive to parameter tuning. 
+%מה עשינו
+\noindent In this work, we address this limitation by using a deep learning network trained on simulation data to dynamically estimate the process covariance matrix. This approach enables the filter to adapt to changing conditions, improving robustness and maintaining accurate positioning over time. Since different navigation filtering frameworks handle nonlinear dynamics differently, applying the same adaptive process noise covariance method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
+%מה אנחנו מציעים
+\noindent We propose SINNE-KF, an adaptive navigation approach that combines model-based innovation adaptation with data-driven neural estimation of inertial sensor noise. The neural network is trained on simulated inertial datasets generated from trajectories with varying motion profiles and sensor-noise levels, following the methodology introduced in \cite{diker2026neural}. We integrate this approach into three filtering frameworks—SINNE-EKF, SINNE-UKF, and SINNE-IKF—and evaluate them on real-world AUV data from the Mediterranean Sea to determine which framework benefits most from accurate, time-varying process noise covariance estimation.\\
+The main contributions of this article are: \\
+\begin{enumerate}\vspace{-1em}
+    \item A general hybrid adaptive method combining innovation-based and neural noise estimation, applicable to multiple Kalman filter variants, including the EKF, UKF, and IKF.
+  \item Real-world validation and comparison using AUV data from the Mediterranean Sea to identify which filter benefits most from adaptive process noise covariance estimation.
+\end{enumerate}
+
+
+\section{Problem Formulation}
+Before we introduce the adaptive approach SINNE-KF that can be employed by EKF, UKF and IKF. We will introduce how each estimator deals with non-linearity. \\
+\begin{comment}
+Acquiring a navigation solution given a inertial and DVL reading of an underwater vehicle has many approach. In this paper we have compared and benchmark the performance of three popular adaptive estimators which are the EKF, UKF and the IKF. This section will introduced each estimator and the adaptive approach.  \\
+\end{comment}
+In all of the following Kalman filter variants the inertial navigation equations are in ECEF frame.
+\begin{equation}
+  \label{dynamics_ode}
+\begin{aligned}
+&\dot{\boldsymbol{p}}_{eb}^{e} = \boldsymbol{v}_{eb}^{e} \\
+&\dot{\boldsymbol{v}}_{eb}^{e} = \mathbf{C}_{b}^{e} \boldsymbol{f}_{ib}^{b}
+- 2(\boldsymbol{\omega}_{ie}^{e})^{\wedge} \boldsymbol{v}_{eb}^{e}
++ \boldsymbol{g}_{ib}^{e} \\
+&\dot{\mathbf{C}}_{b}^{e} = \mathbf{C}_{b}^{e}(\boldsymbol{\omega}_{ib}^{b})^{\wedge}
+- (\boldsymbol{\omega}_{ie}^{e})^{\wedge} \mathbf{C}_{b}^{e}
+\end{aligned}
+\end{equation}
+where the \(\boldsymbol{p}_{eb}^e\) and \(\boldsymbol{v}_{eb}^e\) are the position and velocity respectively of the body frame relative to ECEF frame resolved in ECEF frame. \(\boldsymbol{\omega}_{ib}^b\) and \(\boldsymbol{f}_{ib}^b\) are the angular velocity and the unspecific force respectively of body with respect to ECI resolved in body. the matrix \(\mathbf{C}_b^e\) is the rotation matrix from body frame to ECEF frame.
+\subsection{Extend Kalman filter}
+The INS error-state model is formulated in the Earth-centered, Earth-fixed (ECEF) frame following \cite{10.5555/1594745}. The error-state vector and the corresponding process-noise vector are defined as
+\begin{equation}
+  \label{ekf_state}
+\delta \mathbf{x}
+=
+\begin{bmatrix}
+\delta\boldsymbol{\theta}\\
+\delta\boldsymbol{v}\\
+\delta\boldsymbol{p}\\
+\delta\boldsymbol{b}_g\\
+\delta\boldsymbol{b}_a
+\end{bmatrix}
+\in\mathbb{R}^{15}
+\qquad
+\mathbf w
+=
+\begin{bmatrix}
+\boldsymbol n_g\\
+\boldsymbol n_a\\
+\boldsymbol n_{b_g}\\
+\boldsymbol n_{b_a}
+\end{bmatrix}
+\in\mathbb{R}^{12}
+\end{equation}
+where \(\boldsymbol w\in \mathbb{R}^{12}\) consists of gyroscope noise, accelerometer noise, bias gyroscope noise and bias accelerometer noise. \\ 
+The error state dynamics comply with the following continuous differential equation
+\begin{equation}
+  \delta \boldsymbol{\dot{x}} = \mathbf{F} \delta \boldsymbol{x} + \mathbf{G} \boldsymbol{\omega} 
+\end{equation}
+where the system matrix
+\begin{equation}
+\mathbf F=
+\begin{bmatrix}
+-\boldsymbol{\Omega}_{ie}^{e}
+& \mathbf 0
+& \mathbf 0
+& -\mathbf C_b^e
+& \mathbf 0
+\\[2mm]
+-\left(\mathbf C_b^e\boldsymbol f_{ib}^b\right)^\wedge 
+& -2\boldsymbol{\Omega}_{ie}^{ee}
+& \mathbf G_p-\left(\boldsymbol{\Omega}_{ie}^{e}\right)^2
+& \mathbf 0
+& -\mathbf C_b^e
+\\[2mm]
+\mathbf 0
+& \mathbf I_3
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\end{bmatrix}
+\end{equation}
+and the noise shaping matrix is
+\begin{equation}
+\mathbf G=
+\begin{bmatrix}
+-\mathbf C_b^e & \mathbf 0 & \mathbf 0 & \mathbf 0\\
+\mathbf 0 & -\mathbf C_b^e & \mathbf 0 & \mathbf 0\\
+\mathbf 0 & \mathbf 0 & \mathbf 0 & \mathbf 0\\
+\mathbf 0 & \mathbf 0 & -\mathbf I_3 & \mathbf 0\\
+\mathbf 0 & \mathbf 0 & \mathbf 0 & -\mathbf I_3
+\end{bmatrix}
+\end{equation}
+and the measurement model of the DVL is
+\begin{equation}
+  \delta \boldsymbol{y} = \mathbf H_{\mathrm{DVL}} \delta \boldsymbol{x}
+\end{equation}
+where the measurement model matrix is
+\begin{equation}
+\mathbf H_{\mathrm{DVL}}
+=
+\begin{bmatrix}
+\mathbf C_e^b(\boldsymbol v_{eb}^e)^\wedge
+&
+\mathbf C_e^b
+&
+\mathbf 0_{3\times 9}
+\end{bmatrix}
+\end{equation}
+\begin{comment}
+The neural learning based approach \cite{diker2026neural} is a function from window of inertial measurement into the process noise covariance of the gyroscope and the accelerometer which is
+\begin{equation}
+  \boldsymbol{q} = f_\theta (\mathcal{W})
+\end{equation}
+
+
+
+where \(f_\theta\) is the neural network, \(\mathcal{W}\) is the window of last inertial measurement and the \(\boldsymbol{q}\in \mathbb{R}^6\) is the process noise covariance of the gyroscope and accelerometer respectively. The neural continuous inertial process noise covariance is
+\begin{equation}
+\mathbf{Q}_{c,neural}=diag(q,q_{bg},q_{ba})\in \mathbb{R}^{12\times 12}
+\end{equation}
+\end{comment}
+\subsection{Invariant Kalman filter}
+The right-invariant error-state model is formulated in ECEF frame following \cite{barrau2018invariant} \cite{luo2021se2} by convention
+\begin{equation}
+  \label{ikf_err}
+\mathbf{\eta}^{R}=\hat{\mathbf X}\mathbf X^{-1} = exp((\xi^R)^\wedge) 
+\end{equation}
+where
+\begin{equation}
+  exp(A)
+= \sum_{k=0}^{\infty} \frac{A^k}{k!}
+\end{equation} is the mapping from the Lie algebra \(\mathfrak{se}_2(3)\) to the Lie group \(SE_2(3)\) and the Lie discrepancy is
+\begin{equation}
+  (\xi^R)^\wedge
+=
+\begin{bmatrix}
+0        & -\xi_3^R & \xi_2^R  & \xi_4^R & \xi_7^R \\
+\xi_3^R  & 0        & -\xi_1^R & \xi_5^R & \xi_8^R \\
+-\xi_2^R & \xi_1^R  & 0        & \xi_6^R & \xi_9^R \\
+0        & 0        & 0        & 0        & 0       \\
+0        & 0        & 0        & 0        & 0
+\end{bmatrix}
+\in \mathfrak{se}_2(3)
+\end{equation}
+and
+\begin{equation}
+  \label{state_embbed}
+\mathbf X = \begin{bmatrix}
+\mathbf{C}_{b}^{e} & \boldsymbol{v}_{eb}^{e} & \boldsymbol{p}_{eb}^{e} \\
+0_{1\times 3} & 1 & 0 \\
+0_{1\times 3} & 0 & 1
+\end{bmatrix} \in SE_2(3)
+\end{equation}
+is the state encoded in Lie group. \\ 
+Given that, the right invariant error is 
+\begin{equation}
+\eta^{R}
+=
+\begin{bmatrix}
+\hat{\mathbf{C}}_{b}^{e}\mathbf{C}_{e}^{b}
+&
+\hat{\boldsymbol{v}}_{eb}^{e}-\hat{\mathbf{C}}_{b}^{e}\boldsymbol{v}_{eb}^{b}
+&
+\hat{\boldsymbol{p}}_{eb}^{e}-\hat{\mathbf{C}}_{b}^{e}\boldsymbol{p}_{eb}^{b}
+\\
+0_{1\times 3} & 1 & 0 \\
+0_{1\times 3} & 0 & 1
+\end{bmatrix}
+\end{equation}
+define the misalignment by
+\begin{equation}
+\hat{\mathbf{C}}_{b}^{e}\mathbf{C}_{e}^{b}
+=
+exp(\boldsymbol{\phi}^{e\wedge})
+\approx
+I+\boldsymbol{\phi}^{e\wedge}
+\end{equation}
+and vectorize the right invariant error as 
+\begin{equation}
+\delta\boldsymbol x
+=
+\begin{bmatrix}
+\boldsymbol{\phi}^{e\wedge}\\
+\hat{\boldsymbol{v}}_{eb}^{e}-\hat{\mathbf{C}}_{b}^{e}\boldsymbol{v}_{eb}^{b} \\
+\hat{\boldsymbol{p}}_{eb}^{e}-\hat{\mathbf{C}}_{b}^{e}\boldsymbol{p}_{eb}^{b}\\
+\delta\boldsymbol b_g\\
+\delta\boldsymbol b_a
+\end{bmatrix}
+\in\mathbb R^{15}
+\qquad
+\boldsymbol w
+=
+\begin{bmatrix}
+\boldsymbol n_g\\
+\boldsymbol n_a\\
+\boldsymbol n_{b_g}\\
+\boldsymbol n_{b_a}
+\end{bmatrix}
+\in\mathbb R^{12}
+\end{equation}
+where \(\boldsymbol{w}\in \mathbb{R}^{12}\) is define as in \eqref{ekf_state}. \\
+The right invariant error state dynamics are
+\begin{equation}
+  \delta \boldsymbol{\dot{x}} = \mathbf{F} \delta \boldsymbol{x} + \mathbf{G} \boldsymbol{w} 
+\end{equation}
+where the system matrix
+\begin{equation}
+\mathbf F
+=
+\begin{bmatrix}
+-\boldsymbol{\Omega}_{ie}^{e}
+& \mathbf 0
+& \mathbf 0
+& \mathbf{C}_b^e
+& \mathbf 0
+\\[2mm]
+-\boldsymbol v^\wedge\boldsymbol{\Omega}_{ie}^{e}
++\boldsymbol g^\wedge
+& -2\boldsymbol{\Omega}_{ie}^{e}
+& \mathbf 0
+& \boldsymbol v^{\wedge}\mathbf{C}_b^e
+& \mathbf{C}_b^e
+\\[2mm]
+\mathbf 0
+& \mathbf I_3
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\end{bmatrix}
+\end{equation}
+and the noise shaping matrix is
+
+
+\begin{equation}
+\mathbf G
+=
+\begin{bmatrix}
+\mathbf C_b^e
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\boldsymbol v^\wedge\mathbf C_b^e
+& \mathbf C_b^e
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf I_3
+& \mathbf 0
+\\[2mm]
+\mathbf 0
+& \mathbf 0
+& \mathbf 0
+& \mathbf I_3
+\end{bmatrix}
+\end{equation}
+where the measuremenet model of the IKF is
+\begin{equation}
+\mathbf H_{\mathrm{DVL}}
+=
+\begin{bmatrix}
+\mathbf 0_{3\times3} & -\mathbf I_3 & \mathbf 0_{3\times9}
+\end{bmatrix}
+\end{equation}
+  
+
+
+
+
+\subsection{Unscented Kalman filter}
+
+\section{Proposed approach}
+In order to address the limitation of the fixed process noise covariance. We propose a deep learning neural network that is trained on simulation data to dynamically estimate the process noise covariance matrix. This approach enable the filter to adapt to changing condition, improving robustness and maintaining accurate position over time. Since different navigation filtering frameworks handle nonlinear dynamics differently. Applying the same adaptive process noise method may lead to different levels of improvement across the various filtering frameworks. We therefore aim to determine which framework benefits the most from an accurately estimated process noise covariance matrix. \\
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figs/propose_app.png}
+    \caption{Overview of the proposed SINNE-KF-aided navigation framework. A sliding window of recent inertial measurements is processed by SINNE-KF to estimate the inertial sensor noise standard deviations, which are then used to adapt the process noise covariance matrix of the selected navigation filter (EKF, UKF, or IKF). In parallel, the raw inertial and DVL measurements are directly fused by the navigation filtering framework for state estimation.}
+    \label{propose_app}
+\end{figure*}
+We propose the sim2real inertial neural adaptive process covariance learning network for Kalman filtering (SINNE-KF). In which we generate simulated inertial datasets based on trajectories with varying motion profiles and sensor noise levels, consistent with the methodology introduced in \cite{diker2026neural}. In this framework, a light and efficient neural network is trained to estimate the standard deviation of the accelerometer and gyroscope measurements. During testing, the trained model is evaluated on real data collected in trials conducted in the Mediterranean sea, from sensors mounted on an AUV. The estimated noise parameters are then used within one of the filtering framework EKF, UKF or IKF to improve state estimation accuracy under real-world conditions. The overall pipeline of the proposed method is illustrated in Fig. \ref{propose_app}. \\
+The adaptive process covariance of SINNE-KF is consists of two parts. The first part is the data-driven sim2real neural network that ultilize past inertial window to learn the process noise covariance and all the Kalman filter SINNE-KF variants that is EKF-SINNE, UKF-SINNE and IKF-SINNE, uses the same neural network with the same weights. The second part is the model-based approach that exploits past innovation window in order to extract process noise covariance matrix namely the adaptive innovation based approach. For the UKF-SINNE and EKF-SINNE our approach follows the approach of \cite{mohamed1999adaptive} but for the adaptive innovation based IKF-SINNE we have imployed the approach from \cite{diker2026neural}.
+\subsection{Data-driven neural inertial learning approach}
+The neural-learning-based approach in \cite{diker2026neural} maps a
+window of recent inertial measurements to the gyroscope and
+accelerometer process-noise parameters:
+\begin{equation}
+\boldsymbol{q}
+=
+f_{\theta}(\mathcal{W})
+=
+\begin{bmatrix}
+\boldsymbol{q}_{g} \\
+\boldsymbol{q}_{a}
+\end{bmatrix}
+\in \mathbb{R}^{6},
+\end{equation}
+%
+where \(f_{\theta}\) denotes the neural network, \(\mathcal{W}\) is a
+window of recent inertial measurements, and
+\(\boldsymbol{q}_{g},\boldsymbol{q}_{a}\in\mathbb{R}^{3}\) contain
+the predicted process-noise variances of the gyroscope and
+accelerometer, respectively.
+The continuous-time process-noise covariance matrix is then defined as
+\begin{equation}
+\mathbf{Q}_{c,\mathrm{neural}}
+=
+\operatorname{diag}
+\left(
+\boldsymbol{q}_{g},
+\boldsymbol{q}_{a},
+\boldsymbol{q}_{bg},
+\boldsymbol{q}_{ba}
+\right)
+\in \mathbb{R}^{12 \times 12},
+\end{equation}
+%
+where
+\(\boldsymbol{q}_{bg}, \boldsymbol{q}_{ba} \in \mathbb{R}^{3}\)
+represent the fixed gyroscope-bias and accelerometer-bias process-noise
+variances, respectively. 
+\subsection{Adaptive innovation model-based approach EKF/UKF}
+The sensor fusion algorithm EKF and UKF has Euclidean innovation which is the difference between the DVL measurement and the estimated velocity in body frame which is
+\begin{equation}
+  \label{ekf_innovation}
+  \nu_{innov} = v^b_{eb} - \hat{v}^b_{eb}
+\end{equation}
+where \(v^b_{eb}\) is the velocity in body frame as measured by the DVL and \(\hat{v}^b_{eb}\) is the estimated velocity in body as given by the EKF or UKF. \\
+The adaptive innovation-based process noise in steady state is given by \cite{mohamed1999adaptive} 
+\begin{equation}
+  \label{innovation_process_noise}
+  \mathbf{Q}_{innov} = \frac{1}{N} \sum_{n=0}^N K_n \nu_n \nu^T_n K_n^T
+\end{equation}
+where \(\mathbf{K}_n\) is the Kalman gain at step \(n\) given by the EKF or the UKF and \(\nu_n\) is the innovation as given by \eqref{ekf_innovation} at step \(n\)
+\subsection{Adaptive innovation model-based approach IKF}
+While the EKF and UKF has difference between the prior and the posterior is given by
+\begin{equation}
+x - \hat{x} = K \nu 
+\end{equation}
+where \(\boldsymbol x\in \mathbb{R}^{15}\) is the posterior state, \(\hat{\boldsymbol x}\in\mathbb{R}^{15}\) is the prior state and \(\mathbf K\) is the Kalman gain. \\
+The IKF difference between the prior and posterior state is given by \eqref{ikf_err} which is 
+\begin{equation}
+(\xi^R)^\wedge = log(\hat{\mathbf X}\mathbf X^{-1})
+\end{equation}
+where the function
+\begin{equation}
+  log(A)
+=
+\sum_{k=1}^{\infty}
+\frac{(-1)^{k+1}}{k}(A-I)^k
+\end{equation}
+is a nonlinear mapping from the Lie group \(SE_2(3)\) into the Lie algebra \(\mathfrak{se}_2(3)\) and \(\mathbf X\) is given from \eqref{state_embbed} \\ 
+As shown in \cite{diker2026neural} the adaptive innovation-based process noise covariance that is derived from Lie innovation is
+\begin{equation}
+  \label{innov_ikf}
+\mathbf Q_{innov} = \frac{1}{N}\sum_{n=1}^N log(\hat{\mathbf X}\mathbf X^{-1})^{\vee} log(\hat{\mathbf X}\mathbf X^{-1})^{\vee,T} 
+\end{equation}
+where \(\mathbf X\) is the posterior state and \(\hat{\mathbf X}\) is the prior state and the mapping \((.)^{\vee}\) is given by
+\begin{equation}
+\begin{bmatrix}
+0        & -\xi_3^R & \xi_2^R  & \xi_4^R & \xi_7^R \\
+\xi_3^R  & 0        & -\xi_1^R & \xi_5^R & \xi_8^R \\
+-\xi_2^R & \xi_1^R  & 0        & \xi_6^R & \xi_9^R \\
+0        & 0        & 0        & 0        & 0       \\
+0        & 0        & 0        & 0        & 0
+\end{bmatrix}^{\vee}
+=
+\begin{bmatrix}
+\xi_1^R \\
+\xi_2^R \\
+\xi_3^R \\
+\xi_4^R \\
+\xi_5^R \\
+\xi_6^R \\
+\xi_7^R \\
+\xi_8^R \\
+\xi_9^R
+\end{bmatrix}
+\end{equation}
+\subsection{The SINNE approach}
+Ultimately, The discrete-time process-noise covariance used by all Kalman filter variant that is EKF-SINNE, UKF-SINNE and IKF-SINNE, is obtained by averaging the neural-network-based covariance and the adaptive innovation-based covariance:
+\begin{equation}
+\mathbf{Q}_{d}
+=
+\frac{1}{2}
+\left(
+\mathbf{G}\mathbf{Q}_{c,\mathrm{neural}}\mathbf{G}^{\mathsf{T}}
++
+\mathbf{Q}_{d,\mathrm{innovation}}
+\right)
+\end{equation}
+where the neural process noise covariance \(\mathbf{Q}_{c,\mathrm{neural}}\) is obtained by the same neural network with the same weights in all variants EKF-SINNE, UKF-SINNE and IKF-SINNE. The innovation based covariance in EKF-SINNE and UKF-SINNE given by \eqref{innovation_process_noise} and the innovation based covariance \(\mathbf{Q}_{d,\mathrm{innovation}}\) in IKF-SINNE is given by \eqref{innov_ikf}.
+\begin{comment}
+In this paper we have compared between those 3 approaches to enable the underwater navigation engineer to select the most fited approach. 
+Those estimator are adapted with innovation based technique and a neural based learning algorithm that given an inertial window output the process noise covariance. In order to ensure fair comparison each estimator uses adapt the process noise covariance by taking half of the innovation based process noise and half from the neural learning based approach. The neural learning based network is trained using sim2real and the same network with the same weights are deployed in each estimator EKF, UKF and IKF. The adaptive    
+\end{comment}
+\begin{comment}
+Table \ref{tab:neuralnetwork1} presents the architecture of the proposed SINNE-KF, which is designed to be both lightweight and computationally efficient.
+\end{comment}
+\begin{comment}
+\begin{table}[!t]
+\centering
+\caption{Architecture of the proposed SINNE-KF.}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{l c p{3.2cm}}
+\hline
+\textbf{Layer} & \textbf{Dim.} & \textbf{Details} \\
+\hline
+Conv1D    & 32  & $k=5$, BN, LeakyReLU \\
+Conv1D    & 64  & $k=5$, BN, LeakyReLU \\
+Conv1D    & 128 & $k=5$, BN, LeakyReLU \\
+Mean Pool & 256 & Temporal average pooling \\
+FC        & 128 & LeakyReLU, Dropout \\
+FC        & 32  & LeakyReLU, Dropout \\
+FC        & 6   & Softplus activation \\
+\hline
+\end{tabular}
+\label{tab:neuralnetwork1}
+\end{table}
+\end{comment}
+\section{Analysis and Results}
+\noindent The dataset used for the evaluation of our results was acquired by the Snapir AUV during maneuvers in the Mediterranean Sea, with a total mission duration of 4,800 seconds. \\
+\begin{comment}
+\subsection{Dataset and Baselines}
+\label{sec:dataset}
+Figure \ref{fig:Snapir} shows the AUV during experiments. \\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{figs/AUVA18D.png}
+    \caption{The Snapir AUV during a mission in the Mediterranean sea.}
+    \label{fig:Snapir}
+\end{figure} \\
+\end{comment}
+\begin{comment}
+\noindent We have evaluated our method over 3 navigation framework with and without the SINNE approach: 
+\begin{enumerate}
+\item A standard EKF with fixed $\mathbf{Q}$.
+\item SINNE-EKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
+\item A standard UKF with fixed $\mathbf{Q}$.
+\item SINNE-UKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
+\item a standard IKF with fixed $\mathbf{Q}$.
+\item SINNE-IKF, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net.
+\end{enumerate}
+
+(1)~a standard \textbf{EKF} with fixed $\mathbf{Q}$ , (2) ~\textbf{SINNE-EKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (3)~a standard \textbf{UKF} with fixed $\mathbf{Q}$ , (4) ~\textbf{SINNE-UKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net, (5)~a standard \textbf{IKF} with fixed $\mathbf{Q}$ , (6) ~\textbf{SINNEN-IKF}, approach that using $\boldsymbol{\sigma}_\mathbf{Q}$-Net. \\
+\subsection{Results}
+\end{comment}
+\noindent We evaluate the filtering frameworks EKF, UKF and IKF with and without the proposed SINNE-KF against the post-processed reference solution. Table \ref{tab:filter_results} shows the performance of each navigation frameworks in terms of root mean square error (RMSE) for the position (PRMSE), velocity (VRMSE)and heading angle (YRMSE).\\
+\begin{table}[h!]
+\centering
+\caption{Comparison of filtering methods for the Snapir AUV, averaged over 12 trajectories}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Method} & \textbf{PRMSE [m]} & \textbf{VRMSE [m/s]} & \textbf{YRMSE [deg]} \\
+\hline
+EKF        & 25.71 & 0.22 & 3.85 \\
+\hline
+EKF SINNE  & 17.80 & 0.18 & 3.44 \\
+\hline
+UKF        & 27.51 & 0.25 & 4.01 \\
+\hline
+UKF SINNE  & 13.21 & 0.18 & 3.52 \\
+\hline
+IKF        & 21.64 & 0.24 & 3.42 \\
+\hline
+IKF SINNE  & \textbf{7.61}  & \textbf{0.17} & \textbf{3.32} \\
+\hline
+\end{tabular}
+\label{tab:filter_results}
+\end{table}
+\noindent The results demonstrate a clear and consistent improvement when incorporating the SINNE approach across all filtering methods. In terms of position accuracy (PRMSE), every baseline filter benefits significantly from SINNE, with reductions of approximately 31\% for EKF, 52\% for UKF, and 65\% for IKF, with the IKF showing the most substantial improvement . A similar trend is observed in the velocity estimates (VRMSE), where SINNE variants reduce the error by about 18–28\%, with IKF-SINNE achieving the best performance at 0.17 m/s. For heading estimation (YRMSE), the improvements are more moderate, on the order of 5–11\%, indicating enhanced stability while maintaining accurate orientation estimates. Overall, the UKF-SINNE and especially the IKF SINNE significantly outperform their standard counterparts, highlighting the effectiveness of the adaptive approach in reducing estimation errors and improving robustness across all evaluated states. A histogram of PRMSE for each of the methods is shown in Figure \ref{his_prmse}.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figs/prmse.png}
+    \caption{PRMSE of each method: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+    \label{his_prmse}
+\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{vrmse.png}
+%     \caption{VRMSE of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+%     \label{fig:placeholder}
+% \end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{myaw.png}
+%     \caption{MYAW of each methods: EKF, SINNE-EKF, UKF, SINNE-UKF, IKF, SINNE-IKF}
+%     \label{fig:placeholder}
+% \end{figure}
+\section{Relevance to the OCEANS community}
+%WTF
+\noindent The relevance of this work to the OCEANS community lies in the need for accurate and robust navigation in underwater systems used for scientific,  and commercial applications. This work directly addresses a key limitation in current navigation systems: the sensitivity of inertial/DVL sensor fusion to improperly tuned process noise parameters. By introducing a data-driven method to adaptively estimate process noise characteristics, the proposed approach improves the reliability and long-term stability of classical navigation filters under realistic and time-varying ocean conditions. This results in reduced drift and improved localization accuracy, both of which are critical for successful deep-sea operations.
+\bibliographystyle{IEEEtran}
+\bibliography{bio.bib}
+\end{document}
