@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  11 AUG 2026 13:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  11 AUG 2026 14:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -948,12 +948,7 @@ map/pdftex.map}{/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/en
 c/dvips/base/8r.enc}
 
 
-] Excluding 'comment' comment.
-Overfull \hbox (3.9711pt too wide) detected at line 334
-[][][]\OT1/cmr/bx/n/10 F \OT1/cmr/m/n/10 = []
- []
-
-Excluding 'comment' comment.
+] Excluding 'comment' comment. Excluding 'comment' comment.
 LaTeX Font Info:    Trying to load font information for U+euf on input line 385
 .
 
@@ -961,11 +956,11 @@ LaTeX Font Info:    Trying to load font information for U+euf on input line 385
 .fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) [2] [3]
-<figs/propose_app.png, id=194, 1107.6582pt x 206.6922pt>
-File: figs/propose_app.png Graphic file (type png)
-<use figs/propose_app.png>
-Package pdftex.def Info: figs/propose_app.png  used on input line 671.
-(pdftex.def)             Requested size: 505.89pt x 94.40147pt.
+<./SINNE_diag.png, id=194, 1496.59125pt x 799.98875pt>
+File: ./SINNE_diag.png Graphic file (type png)
+<use ./SINNE_diag.png>
+Package pdftex.def Info: ./SINNE_diag.png  used on input line 669.
+(pdftex.def)             Requested size: 505.89pt x 270.4179pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -973,13 +968,16 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [4] Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
-<figs/prmse.png, id=228, 722.7pt x 358.4592pt>
+<figs/prmse.png, id=225, 722.7pt x 358.4592pt>
 File: figs/prmse.png Graphic file (type png)
 <use figs/prmse.png>
-Package pdftex.def Info: figs/prmse.png  used on input line 870.
+Package pdftex.def Info: figs/prmse.png  used on input line 868.
 (pdftex.def)             Requested size: 246.94499pt x 122.48164pt.
- [5 <./figs/propose_app.png>]
-(./Oceans26_UKF_EKF_IKF.bbl
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./SINNE_diag.png>] (./Oceans26_UKF_EKF_IKF.bbl
 Underfull \hbox (badness 1824) in paragraph at lines 42--44
 []\OT1/ptm/m/n/8 A. Mo-hamed and K. Schwarz, ``Adap-tive Kalman fil-ter-ing for
 
@@ -1003,44 +1001,46 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `Oceans26_UKF_EKF_IKF.out' has not changed.
-(rerunfilecheck)             Checksum: E9F4D337B4372EB468A45D5060F91CD9;2730.
+(rerunfilecheck)             Checksum: 079498B0FF8E4314FAC43669250CE45E;2551.
  ) 
 Here is how much of TeX's memory you used:
- 22388 strings out of 467525
- 423818 string characters out of 5408440
- 838531 words of memory out of 5000000
- 50821 multiletter control sequences out of 15000+600000
+ 22386 strings out of 467525
+ 423760 string characters out of 5408440
+ 839494 words of memory out of 5000000
+ 50820 multiletter control sequences out of 15000+600000
  677882 words of font info for 153 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,118p,1839b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,118p,1146b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20260301/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cella
-r/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></
+nts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20260301/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar
+/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
 opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi9.pfb></opt/homebrew/Cellar/texlive/20260301/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></opt/homebrew/Cellar/tex
-live/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/h
-omebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmss8.pfb></opt/homebrew/Cellar/texlive/2026
-0301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/
-Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.p
-fb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/a
-msfonts/euler/eufm10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/
-20260301/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></opt/homebrew/Cella
-r/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></opt/hom
-ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
-></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on Oceans26_UKF_EKF_IKF.pdf (6 pages, 595933 bytes).
+ts/cm/cmmi5.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20260301/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texli
+ve/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></opt/hom
+ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmib10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/202
+60301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></opt/homebrew/C
+ellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pf
+b></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20260301/s
+hare/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></opt/homebrew/Cel
+lar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
+ype1/urw/times/utmbi8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb></opt/homebrew/Cellar/texlive/20260301/sha
+re/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Oceans26_UKF_EKF_IKF.pdf (6 pages, 1248836 bytes).
 PDF statistics:
- 348 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
- 92 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 353 PDF objects out of 1000 (max. 8388607)
+ 287 compressed objects within 3 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 143 words of extra memory for PDF output out of 10000 (max. 10000000)
 
