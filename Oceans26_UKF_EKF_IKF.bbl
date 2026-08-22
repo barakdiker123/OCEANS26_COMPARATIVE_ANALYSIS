@@ -21,31 +21,68 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{10.5555/1594745}
+J.~Farrell, \emph{Aided Navigation: GPS with High Rate Sensors}, 1st~ed.\hskip
+  1em plus 0.5em minus 0.4em\relax USA: McGraw-Hill, Inc., 2008.
+
+\bibitem{bar2011tracking}
+Y.~Bar-Shalom, P.~K. Willett, and X.~Tian, \emph{Tracking and data
+  fusion}.\hskip 1em plus 0.5em minus 0.4em\relax YBS publishing Storrs, CT,
+  USA:, 2011, vol.~11.
+
 \bibitem{wan2001unscented}
 E.~A. Wan and R.~Van Der~Merwe, ``{The unscented Kalman filter},'' \emph{Kalman
   filtering and neural networks}, pp. 221--280, 2001.
+
+\bibitem{simon2006optimal}
+D.~Simon, \emph{{Optimal state estimation: Kalman, H infinity, and nonlinear
+  approaches}}.\hskip 1em plus 0.5em minus 0.4em\relax John Wiley \& Sons,
+  2006.
 
 \bibitem{barrau2018invariant}
 A.~Barrau and S.~Bonnabel, ``Invariant {Kalman} filtering,'' \emph{Annual
   Review of Control, Robotics, and Autonomous Systems}, vol.~1, no.~1, pp.
   237--257, 2018.
 
+\bibitem{barrau2017three}
+------, ``Three examples of the stability properties of the invariant extended
+  {Kalman} filter,'' \emph{IFAC-PapersOnLine}, vol.~50, no.~1, pp. 431--437,
+  2017.
+
+\bibitem{hartley2020contact}
+R.~Hartley, M.~Ghaffari, R.~M. Eustice, and J.~W. Grizzle, ``Contact-aided
+  invariant extended {Kalman} filtering for robot state estimation,'' \emph{The
+  International Journal of Robotics Research}, vol.~39, no.~4, pp. 402--430,
+  2020.
+
 \bibitem{groves2013principles}
 P.~Groves, ``Principles of {GNSS}, inertial, and multisensor integrated
   navigation systems, 2nd edn. {GNSS/GPS}. {A}rtech {H}ouse,'' 2013.
 
-\bibitem{10.5555/1594745}
-J.~Farrell, \emph{Aided Navigation: GPS with High Rate Sensors}, 1st~ed.\hskip
-  1em plus 0.5em minus 0.4em\relax USA: McGraw-Hill, Inc., 2008.
+\bibitem{klein2020continuous}
+I.~Klein and Y.~Lipman, ``Continuous ins/dvl fusion in situations of dvl
+  outages,'' in \emph{2020 IEEE/OES Autonomous Underwater Vehicles Symposium
+  (AUV)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2020, pp. 1--6.
+
+\bibitem{damari2026ai}
+G.~Damari, Z.~Yampolsky, N.~Cohen, A.~K. Sahoo, J.~Danial, F.~O. Silva, and
+  I.~Klein, ``Ai-aided advancements in autonomous underwater vehicle
+  navigation,'' \emph{arXiv preprint arXiv:2605.04672}, 2026.
+
+\bibitem{hu2025tightly}
+G.~Hu \emph{et~al.}, ``Tightly coupled sins/dvl based on lie group {$SE_2(3)$}
+  in local-level frame,'' \emph{IEEE Transactions on Aerospace and Electronic
+  Systems}, vol.~61, no.~6, pp. 16\,239--16\,250, 2025.
+
+\bibitem{chen2024seamless}
+Y.~Chen, Y.~He, Y.~Zhao, S.~Li, W.~Yao, and E.~Kayacan, ``Seamless ins/dvl
+  integrated navigation system via online transfer gaussian process
+  regression,'' \emph{IEEE Transactions on Instrumentation and Measurement},
+  vol.~73, pp. 1--13, 2024.
 
 \bibitem{mohamed1999adaptive}
 A.~Mohamed and K.~Schwarz, ``Adaptive {Kalman} filtering for {INS/GPS},''
   \emph{Journal of geodesy}, vol.~73, no.~4, pp. 193--203, 1999.
-
-\bibitem{kost2022measurement}
-O.~Kost, J.~Dun{\'\i}k, and O.~Straka, ``Measurement difference method: A
-  universal tool for noise identification,'' \emph{IEEE Transactions on
-  Automatic Control}, vol.~68, no.~3, pp. 1792--1799, 2022.
 
 \bibitem{magill1965optimal}
 D.~Magill, ``Optimal adaptive estimation of sampled stochastic processes,''
@@ -61,6 +98,48 @@ Y.~Meng, S.~Gao, Y.~Zhong, G.~Hu, and A.~Subic, ``{Covariance matching based
 R.~Mehra, ``Approaches to adaptive filtering,'' \emph{IEEE Transactions on
   automatic control}, vol.~17, no.~5, pp. 693--698, 1972.
 
+\bibitem{gao2015adaptive}
+W.~Gao, J.~Li, G.~Zhou, and Q.~Li, ``Adaptive {Kalman} filtering with recursive
+  noise estimator for integrated {SINS/DVL} systems,'' \emph{The Journal of
+  Navigation}, vol.~68, no.~1, pp. 142--161, 2015.
+
+\bibitem{wang2023system}
+Q.~Wang, K.~Liu, and Z.~Cao, ``System noise variance matrix adaptive kalman
+  filter method for {AUV INS/DVL} navigation system,'' \emph{Ocean
+  Engineering}, vol. 267, p. 113269, 2023.
+
+\bibitem{kost2022measurement}
+O.~Kost, J.~Dun{\'\i}k, and O.~Straka, ``Measurement difference method: A
+  universal tool for noise identification,'' \emph{IEEE Transactions on
+  Automatic Control}, vol.~68, no.~3, pp. 1792--1799, 2022.
+
+\bibitem{jin2023adaptive}
+K.~Jin, H.~Chai, C.~Su, X.~Yin, and M.~Xiang, ``A novel adaptive nonlinear
+  kalman filter scheme for {DVL}-aided {SINS} alignment in underwater
+  vehicles,'' \emph{Signal Processing}, vol. 209, p. 109045, 2023.
+
+\bibitem{davari2019variational}
+N.~Davari and A.~Gholami, ``Variational bayesian adaptive kalman filter for
+  asynchronous multirate multi-sensor integrated navigation system,''
+  \emph{Ocean Engineering}, vol. 174, pp. 108--116, 2019.
+
+\bibitem{qian2023ins}
+L.~Qian, F.~Qin, A.~Li, K.~Li, and J.~Zhu, ``An {INS/DVL} integrated navigation
+  filtering method against complex underwater environment,'' \emph{Ocean
+  Engineering}, vol. 278, p. 114398, 2023.
+
+\bibitem{tang2023invariant}
+H.~Tang, J.~Xu, L.~Chang, and H.~He, ``Invariant error-based integrated
+  solution for {SINS/DVL} in earth frame: Extension and comparison,''
+  \emph{IEEE Transactions on Instrumentation and Measurement}, vol.~72, pp.
+  1--17, 2023.
+
+\bibitem{xu2024invariant}
+B.~Xu, Y.~Guo, Z.~Jiang, and X.~Wang, ``An invariant error-based
+  {SINS/DVL/USBL} tightly coupled integrated navigation algorithm and its
+  robust state estimator,'' \emph{Ocean Engineering}, vol. 292, p. 116511,
+  2024.
+
 \bibitem{11361209}
 A.~Levy and I.~Klein, ``Adaptive neural unscented {Kalman} filter,'' \emph{IEEE
   Transactions on Intelligent Vehicles}, pp. 1--10, 2026.
@@ -74,20 +153,23 @@ N.~Cohen and I.~Klein, ``Inertial navigation meets deep learning: A survey of
 B.~Diker and I.~Klein, ``{Neural} aided adaptive innovation-based invariant
   {Kalman} filter,'' \emph{arXiv preprint arXiv:2603.26709}, 2026.
 
-\bibitem{cohen2025adaptive}
-N.~Cohen and I.~Klein, ``Adaptive {Kalman}-informed transformer,''
-  \emph{Engineering Applications of Artificial Intelligence}, vol. 146, p.
-  110221, 2025.
+\bibitem{solodar2024vio}
+D.~Solodar and I.~Klein, ``{VIO-DualProNet: Visual-inertial odometry with
+  learning based process noise covariance},'' \emph{Engineering Applications of
+  Artificial Intelligence}, vol. 133, p. 108466, 2024.
+
+\bibitem{titterton2004strapdown}
+D.~Titterton and J.~L. Weston, \emph{Strapdown inertial navigation
+  technology}.\hskip 1em plus 0.5em minus 0.4em\relax IET, 2004, vol.~17.
 
 \bibitem{luo2021se2}
 Y.~Luo, C.~Guo, S.~You, J.~Hu, and J.~Liu, ``Se2 (3) based extended {Kalman}
   filter and smoothing for inertial-integrated navigation,'' \emph{arXiv
   preprint arXiv:2102.12897}, 2021.
 
-\bibitem{9591188}
-K.~Nielsen, C.~Svahn, H.~Rodriguez-Deniz, and G.~Hendeby, ``Ukf parameter
-  tuning for local variation smoothing,'' in \emph{2021 IEEE International
-  Conference on Multisensor Fusion and Integration for Intelligent Systems
-  (MFI)}, 2021, pp. 1--8.
+\bibitem{cohen2025adaptive}
+N.~Cohen and I.~Klein, ``Adaptive {Kalman}-informed transformer,''
+  \emph{Engineering Applications of Artificial Intelligence}, vol. 146, p.
+  110221, 2025.
 
 \end{thebibliography}

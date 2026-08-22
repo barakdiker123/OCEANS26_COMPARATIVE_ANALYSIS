@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  11 AUG 2026 14:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  22 AUG 2026 23:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -119,7 +119,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \c@IEEEbiography=\count289
 \@IEEEtranrubishbin=\box54
 )
-** ATTENTION: Overriding command lockouts (line 73).
+** ATTENTION: Overriding command lockouts (line 2).
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/geometry/geom
 etry.sty
@@ -792,31 +792,63 @@ File: pgfmoduleparser.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 nt.sty
 \CommentStream=\write4
  Excluding comment 'comment')
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/soul/soul.s
+ty
+Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/soul/soul-o
+ri.sty
+Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
+\SOUL@word=\toks37
+\SOUL@lasttoken=\toks38
+\SOUL@syllable=\toks39
+\SOUL@cmds=\toks40
+\SOUL@buffer=\toks41
+\SOUL@token=\toks42
+\SOUL@syllgoal=\dimen305
+\SOUL@syllwidth=\dimen306
+\SOUL@charkern=\dimen307
+\SOUL@hyphkern=\dimen308
+\SOUL@dimen=\dimen309
+\SOUL@dimeni=\dimen310
+\SOUL@minus=\count345
+\SOUL@comma=\count346
+\SOUL@apo=\count347
+\SOUL@grave=\count348
+\SOUL@spaceskip=\skip59
+\SOUL@ttwidth=\dimen311
+\SOUL@uldp=\dimen312
+\SOUL@ulht=\dimen313
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/etexcmds/et
+excmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+))
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
 ackend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count345
+\l__color_backend_stack_int=\count349
 ) (./Oceans26_UKF_EKF_IKF.aux)
 \openout1 = `Oceans26_UKF_EKF_IKF.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 92.
-LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 -- Lines per column: 55 (approximate, difference = 8.4975pt).
 *geometry* driver: auto-detecting
@@ -857,17 +889,17 @@ LaTeX Font Info:    ... okay on input line 92.
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/context/base/mkii/s
 upp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count346
-\scratchdimen=\dimen305
+\scratchcounter=\count350
+\scratchdimen=\dimen314
 \scratchbox=\box68
-\nofMPsegments=\count347
-\nofMParguments=\count348
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count349
-\MPscratchDim=\dimen306
-\MPnumerator=\count350
-\makeMPintoPDFobject=\count351
-\everyMPtoPDFconversion=\toks38
+\nofMPsegments=\count351
+\nofMParguments=\count352
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count353
+\MPscratchDim=\dimen315
+\MPnumerator=\count354
+\makeMPintoPDFobject=\count355
+\everyMPtoPDFconversion=\toks44
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/epstopdf-pkg/
 epstopdf-base.sty
@@ -880,64 +912,68 @@ pstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 92.
+Package hyperref Info: Link coloring OFF on input line 36.
  (./Oceans26_UKF_EKF_IKF.out) (./Oceans26_UKF_EKF_IKF.out)
 \@outlinefile=\write5
 \openout5 = `Oceans26_UKF_EKF_IKF.out'.
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 200.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 200
-.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
+
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
 .fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 200
-.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
+
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
 .fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) Excluding 'comment' comment.
-Underfull \hbox (badness 7308) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 Accurate po-si-tion-ing is a fun-da-men-tal chal-lenge in
+)
+Underfull \hbox (badness 3323) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 es-tab-lished frame-works for in-er-tial/DVL sen-sor fu-sion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 au-tonomous nav-i-ga-tion, par-tic-u-larly in un-der-wa-ter
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 This pa-per pro-vides a common-ground, real-world
  []
 
 
-Underfull \hbox (badness 3746) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 en-vi-ron-ments where global nav-i-ga-tion satel-lite sys-tem
+Underfull \hbox (badness 2486) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 bench-mark of the EKF, UKF, and RI-IKF and their
  []
 
 
-Underfull \hbox (badness 2884) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 Doppler ve-loc-ity log (DVL) ob-ser-va-tions, to es-ti-mate
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 neural-aided vari-ants un-der iden-ti-cal con-di-tions. All
  []
 
 
-Underfull \hbox (badness 6078) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 Kalman-filter-based es-ti-ma-tors, in-clud-ing the ex-tended
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 demon-strat-ing a strong syn-ergy be-tween data-driven
  []
 
 
-Underfull \hbox (badness 3240) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 Classical ap-proaches for ad-dress-ing model un-cer-tainty
+Underfull \hbox (badness 1789) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 The re-main-der of this pa-per is or-ga-nized as fol-lows.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 in-clude innovation-based adap-tive es-ti-ma-tion [[]5[]]--[[]7
-[]],
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 Sec-tion []II[] in-tro-duces the EKF, UKF, and RI-IKF
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--246
-\OT1/ptm/m/n/10 based co-vari-ance adap-ta-tion with data-driven neu-ral
+Underfull \hbox (badness 3009) in paragraph at lines 88--95
+\OT1/ptm/m/n/10 bench-mark dataset, eval-u-ated fil-ter-ing ap-proaches, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+
  []
 
 
@@ -949,36 +985,48 @@ c/dvips/base/8r.enc}
 
 
 ] Excluding 'comment' comment. Excluding 'comment' comment.
-LaTeX Font Info:    Trying to load font information for U+euf on input line 385
+LaTeX Font Info:    Trying to load font information for U+euf on input line 274
 .
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/ueuf
 .fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [2] [3]
-<./SINNE_diag.png, id=194, 1496.59125pt x 799.98875pt>
-File: ./SINNE_diag.png Graphic file (type png)
-<use ./SINNE_diag.png>
-Package pdftex.def Info: ./SINNE_diag.png  used on input line 669.
-(pdftex.def)             Requested size: 505.89pt x 270.4179pt.
-
+) Excluding 'comment' comment. [2]
+<./SINNE_diag1.png, id=209, 911.405pt x 486.81876pt>
+File: ./SINNE_diag1.png Graphic file (type png)
+<use ./SINNE_diag1.png>
+Package pdftex.def Info: ./SINNE_diag1.png  used on input line 558.
+(pdftex.def)             Requested size: 505.9053pt x 170.71596pt.
+ [3]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4] Excluding 'comment' comment. Excluding 'comment' comment.
+Excluding 'comment' comment. Excluding 'comment' comment.
+Underfull \hbox (badness 2753) in paragraph at lines 664--665
+\OT1/ptm/m/n/10 by all Kalman fil-ter vari-ants is ob-tained by av-er-ag-
+ []
+
 Excluding 'comment' comment. Excluding 'comment' comment.
 Excluding 'comment' comment.
-<figs/prmse.png, id=225, 722.7pt x 358.4592pt>
-File: figs/prmse.png Graphic file (type png)
-<use figs/prmse.png>
-Package pdftex.def Info: figs/prmse.png  used on input line 868.
-(pdftex.def)             Requested size: 246.94499pt x 122.48164pt.
+Underfull \hbox (badness 1354) in paragraph at lines 709--710
+\OT1/ptm/m/n/10 a stan-dard de-vi-a-tion of $\OT1/cmr/m/n/10 4 \OMS/cmsy/m/n/10
+ ^^B \OT1/cmr/m/n/10 10[][]$\OT1/ptm/m/n/10 , the gy-ro-scope
+ []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 709--710
 
-[5 <./SINNE_diag.png>] (./Oceans26_UKF_EKF_IKF.bbl
-Underfull \hbox (badness 1824) in paragraph at lines 42--44
+ []
+
+[4] Excluding 'comment' comment.
+<./prmse_neural_aided.png, id=274, 351.4731pt x 221.628pt>
+File: ./prmse_neural_aided.png Graphic file (type png)
+<use ./prmse_neural_aided.png>
+Package pdftex.def Info: ./prmse_neural_aided.png  used on input line 752.
+(pdftex.def)             Requested size: 246.94656pt x 142.26414pt.
+ [5 <./SINNE_diag1.png>]
+Excluding 'comment' comment. (./Oceans26_UKF_EKF_IKF.bbl
+Underfull \hbox (badness 1824) in paragraph at lines 84--86
 []\OT1/ptm/m/n/8 A. Mo-hamed and K. Schwarz, ``Adap-tive Kalman fil-ter-ing for
 
  []
@@ -995,52 +1043,62 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6 <./figs/prmse.png>] (./Oceans26_UKF_EKF_IKF.aux)
+[6 <./prmse_neural_aided.png>] (./Oceans26_UKF_EKF_IKF.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `Oceans26_UKF_EKF_IKF.out' has not changed.
-(rerunfilecheck)             Checksum: 079498B0FF8E4314FAC43669250CE45E;2551.
+(rerunfilecheck)             Checksum: 5E820A178D4D80E950E5705766834C76;3069.
  ) 
 Here is how much of TeX's memory you used:
- 22386 strings out of 467525
- 423760 string characters out of 5408440
- 839494 words of memory out of 5000000
- 50820 multiletter control sequences out of 15000+600000
- 677882 words of font info for 153 fonts, out of 8000000 for 9000
+ 22713 strings out of 467525
+ 429216 string characters out of 5408440
+ 861170 words of memory out of 5000000
+ 51106 multiletter control sequences out of 15000+600000
+ 684577 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,118p,1146b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,118p,1055b,882s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx8.pfb></opt/homebrew/Cellar/texlive/20260301/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar
-/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></opt/homebrew/Cellar/
+texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></o
+pt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfont
+s/cmextra/cmex9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20260301/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/homebrew/Cellar/
+texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></op
+t/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20260301/share/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></opt/homebrew/Cellar/texlive
+/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></opt/hom
+ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cmex
+tra/cmmib9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/homebrew/Cellar/texlive
+/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebr
+ew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmss8.pfb></opt/homebrew/Cellar/texlive/20260301/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cella
+r/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></
 opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi5.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20260301/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texli
-ve/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></opt/hom
-ebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmib10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/202
-60301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></opt/homebrew/C
-ellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pf
-b></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20260301/s
-hare/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></opt/homebrew/Cel
-lar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
-0.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/t
-imes/utmb8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
-ype1/urw/times/utmbi8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-d
-ist/fonts/type1/urw/times/utmr8a.pfb></opt/homebrew/Cellar/texlive/20260301/sha
-re/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Oceans26_UKF_EKF_IKF.pdf (6 pages, 1248836 bytes).
+ts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy9.pfb></opt/homebrew/Cellar/texlive/20260301/share/
+texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></opt/homebrew/Cellar/t
+exlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/
+urw/times/utmbi8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/f
+onts/type1/urw/times/utmr8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Oceans26_UKF_EKF_IKF.pdf (6 pages, 813598 bytes).
 PDF statistics:
- 353 PDF objects out of 1000 (max. 8388607)
- 287 compressed objects within 3 object streams
- 91 named destinations out of 1000 (max. 500000)
- 143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 450 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 111 named destinations out of 1000 (max. 500000)
+ 167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
